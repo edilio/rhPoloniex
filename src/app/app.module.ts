@@ -8,6 +8,7 @@ import { TrollboxPage } from '../pages/trollbox/trollbox';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { MiningCalculatorPage } from '../pages/mining-calculator/mining-calculator';
+import { InvestmentCalculatorPage } from '../pages/investment-calculator/investment-calculator';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { MiningCalculatorPage } from '../pages/mining-calculator/mining-calculat
     Calculators,
     TrollboxPage,
     MiningCalculatorPage,
+    InvestmentCalculatorPage,
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -27,6 +29,7 @@ import { MiningCalculatorPage } from '../pages/mining-calculator/mining-calculat
     Calculators,
     TrollboxPage,
     MiningCalculatorPage,
+    InvestmentCalculatorPage,
   ],
   providers: [
     StatusBar,
