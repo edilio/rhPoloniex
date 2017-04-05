@@ -1,0 +1,50 @@
+<!--
+  Generated template for the Trollbox page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Trollbox</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h4>Only filtering now by XMR, BTC, ETH, ZEC, DCR, GNT, PASC, DASH, XCB, LCT, XRP</h4>
+  <ion-list radio-group [(ngModel)]="selectedFilter">
+    <ion-list-header>
+      Currency
+    </ion-list-header>
+
+
+    <ion-item *ngFor="let d of allTabs"  ng-value="d">
+      <ion-label>{{ d }}</ion-label>
+      <ion-radio value="{{ d }}">{{ d }}</ion-radio>
+    </ion-item>
+  </ion-list>
+        
+  <div *ngIf="!hasReceivedMessage">
+      Waiting for First Msg.
+  </div>
+  <hr>
+  <div>
+      <a href="http://xmr.mockingjaysoft.com/blog/how-to-earn-41376-dollars-with-cryptocurrencies-in-less-than-one-year.html">How to Earn 41,376.00 dollars with Cryptocurrencies in less than one year</a>
+  </div>
+  <div *ngFor="let tab of tabs">
+    <ion-list *ngIf="(selectedFilter == 'all') || (selectedFilter == tab)">
+      <ion-list-header>
+        {{ tab }}
+      </ion-list-header>
+      <ion-item *ngFor="let msg of msgs[tab]" text-wrap>
+        <h3>{{msg.author}}:</h3>
+        <!--<h3>{{msg.author}} at {{msg.time}} </h3>-->
+        <p>{{ msg.message }}</p>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

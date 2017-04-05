@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Portfolio</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h3>Portfolio in BTC: {{ totalBalanceInBTC() | number:'1.2-2'}}</h3>
+  <h3>Portfolio in USD: {{ totalBalanceInUSD() | number:'1.2-2' }}</h3>
+  <ion-list> 
+    <ion-list-header>
+      Portfolio
+    </ion-list-header>
+
+    <ion-item *ngFor="let investment of portfolio" >
+      <ion-icon item-left>{{ investment.currency }}</ion-icon>
+      <ion-icon item-right>{{ investment.pctChange() | number:'1.2-2' }}%</ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>
