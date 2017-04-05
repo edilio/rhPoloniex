@@ -16,17 +16,19 @@
   <ion-list *ngIf="investment">
     
     <ion-item> <h2>Total Balance:</h2> <h2 item-right>{{investment.totalBalance()| number: '1.6-6'}}</h2></ion-item>
-    <ion-item>Balance: {{investment.balance| number: '1.6-6'}}</ion-item>
-    <ion-item>Open Orders: {{investment.openOrders| number: '1.6-6'}}</ion-item>
-
-    <ion-item>Avg Cost: {{investment.avgCost| number: '1.6-6'}}</ion-item>
     <ion-item>
-          <ion-row>
-            <ion-col width-50>Avg Cost:</ion-col>
-            <ion-col width-50> <ion-input type="number" [(ngModel)]="monthsToMine"></ion-input>  
-            </ion-col>
-          </ion-row>
-    
+      <ion-label color="primary" fixed>Balance:</ion-label>
+      <ion-input type="number" placeholder="Balance" [(ngModel)]="investment.balance"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" fixed>Open Orders:</ion-label>
+      <ion-input type="number" placeholder="Open Orders" [(ngModel)]="investment.openOrders"></ion-input>
+      </ion-item>
+
+    <ion-item>
+       <ion-label color="primary" fixed>Avg Cost:</ion-label>
+       <ion-input type="number" placeholder="Avg Cost" [(ngModel)]="investment.avgCost"></ion-input>
     </ion-item>
     <ion-item>Actual Price: {{investment.actualPrice| number: '1.6-6'}}</ion-item>
     <ion-item>

@@ -9,12 +9,12 @@ import { InvestmentDetailPage } from '../investment-detail/investment-detail';
 export class Investment {
   price1btc: number = 0;
   
-  constructor (public currency: string, public balance: number = 0, public openOrders: number= 0,
+  constructor (public currency: string, public balance: any = 0, public openOrders: any= 0,
                public avgCost: number, public actualPrice: number, public pctOfInvestment: number = 0) {
 
   }
   totalBalance() {
-    return this.balance + this.openOrders;
+    return parseFloat(this.balance) + parseFloat(this.openOrders);
   }
   btcValue () {
     return this.totalBalance() * this.actualPrice;
