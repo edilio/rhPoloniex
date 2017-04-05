@@ -17,7 +17,7 @@
 
     <ion-item *ngFor="let investment of portfolio" >
       <ion-icon item-left>{{ investment.currency }}</ion-icon>
-      <ion-icon item-right>{{ investment.pctChange() | number:'1.2-2' }}%</ion-icon>
+      <ion-icon item-right color="{{investment.pctChange() >= 0 ? 'secondary' : 'danger'}}">{{ investment.pctChange() | number:'1.2-2' }}%</ion-icon>
     </ion-item>
   </ion-list>
 </ion-content>
