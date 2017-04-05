@@ -122,4 +122,8 @@ export class Portfolio {
       connection.open();
   }
 
+  itemTapped = function(event, item) {
+    console.log(item.currency);
+  }
+
 }

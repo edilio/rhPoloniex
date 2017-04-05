@@ -9,6 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { MiningCalculatorPage } from '../pages/mining-calculator/mining-calculator';
 import { InvestmentCalculatorPage } from '../pages/investment-calculator/investment-calculator';
+import { InvestmentDetailPage } from '../pages/investment-detail/investment-detail';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { InvestmentCalculatorPage } from '../pages/investment-calculator/investm
     TrollboxPage,
     MiningCalculatorPage,
     InvestmentCalculatorPage,
+    InvestmentDetailPage,
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -30,6 +32,7 @@ import { InvestmentCalculatorPage } from '../pages/investment-calculator/investm
     TrollboxPage,
     MiningCalculatorPage,
     InvestmentCalculatorPage,
+    InvestmentDetailPage,
   ],
   providers: [
     StatusBar,

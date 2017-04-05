@@ -18,32 +18,6 @@
     </button>
   </ion-list>
   <div *ngIf="selectedItem != undefined">
-      <div *ngIf="selectedItem.title=='Investment'" padding>
-      <h1>Investment Calculator</h1>
-      <ion-list>
-
-        <ion-item>
-          <ion-label floating>Investment Amount</ion-label>
-          <ion-input type="number" [(ngModel)]="investmentCalculator.investmentAmount"></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label floating>Cost Per Currency</ion-label>
-          <ion-input type="number" [(ngModel)]="investmentCalculator.costPerCurrency">></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label floating>Price To Sell Investment</ion-label>
-          <ion-input type="number" [(ngModel)]="investmentCalculator.priceToSellInvestment"></ion-input>
-        </ion-item>
-        
-      </ion-list>
-      <h3>Result</h3>
-      <div>Amount of Currency bought: <b>{{investmentCalculator.amountCurrency | number:'1.0-0'}}</b></div>
-      <div>Cost of XMR buying: <b>{{investmentCalculator.costOfBuying | currency:'USD':true:'1.2-2'}}</b></div>
-      <div>Total Sale: <b>{{investmentCalculator.totalSaleInvestment | currency:'USD':true:'1.2-2'}}</b></div>
-      <div>Profit: <b>{{investmentCalculator.profitInvestment | currency:'USD':true:'1.2-2'}}</b></div>
-      <div>ROI Investment: <b>{{investmentCalculator.roiInvestment() | number:'1.2-2'}}%</b></div>
-    </div>  
   </div>
   
 </ion-content>
