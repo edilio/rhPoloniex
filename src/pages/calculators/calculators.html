@@ -17,72 +17,8 @@
       </div>
     </button>
   </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  
-  </div>
   <div *ngIf="selectedItem != undefined">
-    <div *ngIf="selectedItem.title=='Mining'" padding>
-      <h2>Calculator</h2>
-      <ion-list>
-
-        <ion-item>
-          <ion-label floating># Rigs(Miners)</ion-label>
-          <ion-input type="number" [(ngModel)]="miningCalculator.noRigs"></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label floating>Cost Investment/Rig</ion-label>
-          <ion-input type="number" [(ngModel)]="miningCalculator.costPerRig"></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label floating>KH/s per Rig</ion-label>
-          <ion-input type="number" [(ngModel)]="miningCalculator.hashesRigs"></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label floating>Currency per Rig/day</ion-label>
-          <ion-input type="number" [(ngModel)]="miningCalculator.xmrPerMiner"></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label floating>Watts per Rig</ion-label>
-          <ion-input type="number" [(ngModel)]="miningCalculator.watts"></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label floating>Cost per Watt</ion-label>
-          <ion-input type="number" [(ngModel)]="miningCalculator.costPerWatt"></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label floating>Price to Sell</ion-label>
-          <ion-input type="number" [(ngModel)]="miningCalculator.priceToSell"></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label floating>Months to Mine</ion-label>
-          <ion-input type="number" [(ngModel)]="miningCalculator.monthsToMine"></ion-input>
-        </ion-item>
-      </ion-list>
-      <div>
-          <hr>
-          <div><i class="fa fa-money"></i> Total Cost of Investment: <span id="totalCostOfInvestment">{{miningCalculator.totalCostOfInvestment | currency}}</span></div>
-          <div><i class="fa fa-money"></i> Cost Of Electricity Monthly: <span id="costOfElectricityMonthly">{{miningCalculator.costOfElectricityMonthly | currency}}</span></div>
-          <div><i class="fa fa-money"></i> Cost Of Electricity in {{miningCalculator.monthsToMine}} Months: <span id="costOfElectricityInMonths">{{miningCalculator.costOfElectricityInMonths() | currency}}</span></div>
-          <hr>
-          <div><i class="fa fa-money"></i> Total Monero Generated: <span id="moneroGenerated">{{miningCalculator.moneroGenerated | number:'1.2-2'}}</span></div>
-          <div><i class="fa fa-money"></i> Total Sale: <span id="totalSale">{{miningCalculator.totalSale | currency}}</span></div>
-          <div><i class="fa fa-money"></i> Total Sale - Investment: <span id="totalSaleMinusInvestment">{{miningCalculator.totalSaleMinusInvestment | currency}}</span></div>
-          <div><i class="fa fa-money"></i> Total Profit(After paying Rigs): <span id="totalProfit"><b>{{miningCalculator.totalProfit | currency}}</b></span></div>
-          <div><i class="fa fa-money"></i> Total Profit(Without paying Rigs): <span id="profit"><b>{{miningCalculator.profit | currency}}</b></span></div>
-          <hr>
-          <div><i class="fa fa-percent"></i> ROI in {{miningCalculator.monthsToMine}} months(including rig investment): <span id="roi"><b>{{miningCalculator.roi | number:'1.2-2'}}%</b></span></div>
-          <div><i class="fa fa-percent"></i> ROI in {{miningCalculator.monthsToMine}} months(without rig investment): <span id="roiwithoutRigs"><b>{{miningCalculator.roiWithoutRigInvestment | number:'1.2-2'}}%</b></span></div>
-      </div>
-    </div>
-    <div *ngIf="selectedItem.title=='Investment'" padding>
+      <div *ngIf="selectedItem.title=='Investment'" padding>
       <h1>Investment Calculator</h1>
       <ion-list>
 

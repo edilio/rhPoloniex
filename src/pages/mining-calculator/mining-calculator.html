@@ -1,0 +1,75 @@
+<!--
+  Generated template for the MiningCalculator page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>miningCalculator</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<h2>Calculator</h2>
+      <ion-list>
+
+        <ion-item>
+          <ion-label floating># Rigs(Miners)</ion-label>
+          <ion-input type="number" [(ngModel)]="noRigs"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Cost Investment/Rig</ion-label>
+          <ion-input type="number" [(ngModel)]="costPerRig"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>KH/s per Rig</ion-label>
+          <ion-input type="number" [(ngModel)]="hashesRigs"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Currency per Rig/day</ion-label>
+          <ion-input type="number" [(ngModel)]="xmrPerMiner"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Watts per Rig</ion-label>
+          <ion-input type="number" [(ngModel)]="watts"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Cost per Watt</ion-label>
+          <ion-input type="number" [(ngModel)]="costPerWatt"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Price to Sell</ion-label>
+          <ion-input type="number" [(ngModel)]="priceToSell"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Months to Mine</ion-label>
+          <ion-input type="number" [(ngModel)]="monthsToMine"></ion-input>
+        </ion-item>
+      </ion-list>
+      <div padding>
+          <hr>
+          <div>Total Cost of Investment: <span id="totalCostOfInvestment">{{totalCostOfInvestment() | currency}}</span></div>
+          <div>Cost Of Electricity Monthly: <span id="costOfElectricityMonthly">{{costOfElectricityMonthly() | currency}}</span></div>
+          <div>Cost Of Electricity in {{monthsToMine}} Months: <span id="costOfElectricityInMonths">{{costOfElectricityInMonths() | currency}}</span></div>
+          <hr>
+          <div>Total Monero Generated: <span id="moneroGenerated">{{moneroGenerated() | number:'1.2-2'}}</span></div>
+          <div>Total Sale: <span id="totalSale">{{totalSale() | currency}}</span></div>
+          <div>Total Sale - Investment: <span id="totalSaleMinusInvestment">{{totalSaleMinusInvestment() | currency}}</span></div>
+          <div>Total Profit(After paying Rigs): <span id="totalProfit"><b>{{totalProfit() | currency}}</b></span></div>
+          <div>Total Profit(Without paying Rigs): <span id="profit"><b>{{profit() | currency}}</b></span></div>
+          <hr>
+          <div>ROI in {{monthsToMine}} months(including rig investment): <span id="roi"><b>{{roi() | number:'1.2-2'}}%</b></span></div>
+          <div>ROI in {{monthsToMine}} months(without rig investment): <span id="roiwithoutRigs"><b>{{roiWithoutRigInvestment() | number:'1.2-2'}}%</b></span></div>
+      </div>
+</ion-content>
