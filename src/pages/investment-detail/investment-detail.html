@@ -1,0 +1,36 @@
+<!--
+  Generated template for the InvestmentDetail page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{investment.currency}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <ion-list *ngIf="investment">
+    
+    <ion-item> <h2>Total Balance:</h2> <h2 item-right>{{investment.totalBalance()| number: '1.6-6'}}</h2></ion-item>
+    <ion-item>Balance: {{investment.balance| number: '1.6-6'}}</ion-item>
+    <ion-item>Open Orders: {{investment.openOrders| number: '1.6-6'}}</ion-item>
+
+    <ion-item>Avg Cost: {{investment.avgCost| number: '1.6-6'}}</ion-item>
+    <ion-item>Actual Price: {{investment.actualPrice| number: '1.6-6'}}</ion-item>
+    <ion-item>
+      % Change:
+      <ion-icon item-right color="{{investment.pctChange() >= 0 ? 'secondary' : 'danger'}}">{{ investment.pctChange() | number:'1.2-2' }}%</ion-icon>
+    </ion-item>
+   
+    <ion-item>% Of Investment: {{investment.pctOfInvestment| number: '1.2-2'}}%</ion-item>
+
+    <ion-item>BTC Value: {{investment.btcValue()| number: '1.6-6'}}</ion-item>
+    <ion-item>USDT Value: {{investment.usdValue()| number: '1.2-2'}}</ion-item>
+  </ion-list>  
+
+  
+</ion-content>

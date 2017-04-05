@@ -16,7 +16,7 @@
       Portfolio
     </ion-list-header>
 
-   <button ion-item *ngFor="let investment of portfolio" (click)="itemTapped($event, item)">
+   <button ion-item *ngFor="let investment of portfolio" (click)="itemTapped($event, investment)">
       <ion-icon item-left>{{ investment.currency }}</ion-icon>
       <ion-icon item-right color="{{investment.pctChange() >= 0 ? 'secondary' : 'danger'}}">{{ investment.pctChange() | number:'1.2-2' }}%</ion-icon>
     </button>

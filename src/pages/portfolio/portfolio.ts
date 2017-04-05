@@ -4,8 +4,9 @@ import { NavController } from 'ionic-angular';
 
 import { Connection } from 'autobahn';
 
+import { InvestmentDetailPage } from '../investment-detail/investment-detail';
   
-class Investment {
+export class Investment {
   price1btc: number = 0;
   
   constructor (public currency: string, public balance: number = 0, public openOrders: number= 0,
@@ -39,13 +40,13 @@ export class Portfolio {
   
   constructor(public navCtrl: NavController) {
     this.portfolio = [
-      new Investment('BTC', 0.350778, 0, 1, 1),
+      new Investment('BTC', 0.00000001, 0, 1, 1),
       new Investment('XBC', 14.969794, 0, 0.053091427574999996, 0),
       new Investment('XMR', 91.404270, 0, 0.01881500, 0),
       new Investment('ETH', 41.935950, 0, 0.04902952136000001, 0),
       new Investment('ZEC', 21.831537, 0, 0.06091212, 0),
       new Investment('DASH', 21.945000, 0, 0.078169995, 0),
-      new Investment('XRP', 20533.401957, 0,3.3459719810862946e-05, 0)
+      new Investment('XRP', 31293.81558430, 0,0.00003316, 0)
     
     ];
     this.updatePctOfInvestment();
@@ -104,6 +105,7 @@ export class Portfolio {
               currency = xy[1];
               if (pair == 'USDT_BTC') {
                   me.updateBTCPrice(currentPrice);
+                  me.updatePctOfInvestment();
               } else if (x == 'BTC') {
                   let investment = me.getCurrencyData(currency);
                   if (investment) {
@@ -124,6 +126,9 @@ export class Portfolio {
 
   itemTapped = function(event, item) {
     console.log(item.currency);
+    this.navCtrl.push(InvestmentDetailPage, {
+        item: item
+    });
   }
 
 }
