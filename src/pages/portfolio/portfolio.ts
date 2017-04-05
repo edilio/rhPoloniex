@@ -8,6 +8,14 @@ import { InvestmentDetailPage } from '../investment-detail/investment-detail';
   
 export class Investment {
   price1btc: number = 0;
+  lowestAsk: number; 
+  highestBid: number;
+  percentChange: number; // 24 h change(poloniex)
+  baseVolume: number;
+  quoteVolume: number;
+  isFrozen: number;
+  _24hrHigh: number;
+  _24hrLow: number;
   
   constructor (public currency: string, public balance: any = 0, public openOrders: any= 0,
                public avgCost: number, public actualPrice: number, public pctOfInvestment: number = 0) {
@@ -88,6 +96,23 @@ export class Portfolio {
      }
   }
 
+  updateInvestment(investment: Investment, args) {
+    //currencyPair, last, lowestAsk, highestBid, percentChange, baseVolume, quoteVolume, isFrozen, 24hrHigh, 24hrLow
+    
+    let currentPrice = args[1];
+        
+
+    investment.actualPrice = currentPrice;
+    investment.lowestAsk = args[2];
+    investment.highestBid = args[3];
+    investment.percentChange = args[4]*100;
+    investment.baseVolume = args[5]; 
+    investment.quoteVolume  = args[6];
+    investment.isFrozen = args[7]; 
+    investment._24hrHigh = args[8];
+    investment._24hrLow = args[9];
+
+  }
   launchTicker() {
       let wsuri = "wss://api.poloniex.com";
       let connection = new Connection({
@@ -109,7 +134,7 @@ export class Portfolio {
               } else if (x == 'BTC') {
                   let investment = me.getCurrencyData(currency);
                   if (investment) {
-                    investment.actualPrice = currentPrice;
+                    me.updateInvestment(investment, args);
                   }
               }
               
