@@ -8,19 +8,6 @@
 </ion-header>
 
 <ion-content padding>
-  <!--<h3>Portfolio in BTC: {{ totalBalanceInBTC() | number:'1.2-2'}}</h3>
-  <h3>Portfolio in USD: {{ totalBalanceInUSD() | number:'1.2-2' }}</h3>
-  <h4>1 BTC = USD {{ price1btc| number:'1.2-2' }}</h4>
-  <ion-list> 
-    <ion-list-header>
-      Portfolio
-    </ion-list-header>
-
-   <button ion-item *ngFor="let investment of portfolio" (click)="itemTapped($event, investment)">
-      <ion-icon item-left>{{ investment.currency }}</ion-icon>
-      <ion-icon item-right color="{{investment.pctChange() >= 0 ? 'secondary' : 'danger'}}">{{ investment.pctChange() | number:'1.2-2' }}%</ion-icon>
-    </button>
-  </ion-list>-->
 
   <ion-list> 
       <ion-item-divider color="polo-base">
@@ -31,12 +18,16 @@
         Portfolio in USD: 
        <ion-icon item-right name="logo-usd"> {{ totalBalanceInUSD() | number:'1.2-2' }}</ion-icon> 
       </ion-item-divider>
+      <ion-item-divider color="polo-base">
+       1 BTC = USD
+       <ion-icon item-right name="logo-usd"> {{ price1btc| number:'1.2-2' }}</ion-icon> 
+      </ion-item-divider>
       <!--<ion-item-divider color="polo-light">Portfolio</ion-item-divider>-->
-      <ion-item *ngFor="let investment of portfolio" >
+      <button ion-item *ngFor="let investment of portfolio" (click)="itemTapped($event, investment)">
           {{ investment.currency }}
           <ion-badge item-right color="{{investment.pctChange() >= 0 ? 'dark-green' : 'dark-red'}}">
             {{ investment.pctChange() | number:'1.2-2' }}%
           </ion-badge>
-        </ion-item>
+        </button>
     </ion-list>
 </ion-content>

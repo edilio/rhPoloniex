@@ -20,6 +20,14 @@
     <ion-item>Open Orders: {{investment.openOrders| number: '1.6-6'}}</ion-item>
 
     <ion-item>Avg Cost: {{investment.avgCost| number: '1.6-6'}}</ion-item>
+    <ion-item>
+          <ion-row>
+            <ion-col width-50>Avg Cost:</ion-col>
+            <ion-col width-50> <ion-input type="number" [(ngModel)]="monthsToMine"></ion-input>  
+            </ion-col>
+          </ion-row>
+    
+    </ion-item>
     <ion-item>Actual Price: {{investment.actualPrice| number: '1.6-6'}}</ion-item>
     <ion-item>
       % Change:
