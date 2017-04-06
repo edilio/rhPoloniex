@@ -7,27 +7,32 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
 
-  <ion-list> 
-      <ion-item-divider color="polo-base">
-        Portfolio in BTC: 
-       <ion-icon item-right name="logo-bitcoin"> {{ totalBalanceInBTC() | number:'1.2-2'}}</ion-icon>
-      </ion-item-divider>
-      <ion-item-divider color="polo-base">
-        Portfolio in USD: 
-       <ion-icon item-right name="logo-usd"> {{ totalBalanceInUSD() | number:'1.2-2' }}</ion-icon> 
-      </ion-item-divider>
-      <ion-item-divider color="polo-base">
-       1 BTC = USD
-       <ion-icon item-right name="logo-usd"> {{ price1btc| number:'1.2-2' }}</ion-icon> 
-      </ion-item-divider>
-      <!--<ion-item-divider color="polo-light">Portfolio</ion-item-divider>-->
-      <button ion-item *ngFor="let investment of portfolio" (click)="itemTapped($event, investment)">
-          {{ investment.currency }}
-          <ion-badge item-right color="{{investment.pctChange() >= 0 ? 'dark-green' : 'dark-red'}}">
-            {{ investment.pctChange() | number:'1.2-2' }}%
-          </ion-badge>
-        </button>
-    </ion-list>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4 text-center width-30>
+        <ion-icon name="logo-bitcoin"> {{ totalBalanceInBTC() | number:'1.2-2'}}</ion-icon>
+      </ion-col>
+      <ion-col col-4 text-center width-30>
+        <ion-icon  name="logo-usd"> {{ totalBalanceInUSD() | number:'1.2-2' }}</ion-icon> 
+      </ion-col>
+      <ion-col col-4 text-center width-40>
+        <ion-icon item-right name="logo-bitcoin"></ion-icon>1 =<ion-icon item-left name="logo-usd"></ion-icon> {{ price1btc| number:'1.2-2' }}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  
+  <ion-list>
+
+    <button ion-item *ngFor="let investment of portfolio" (click)="itemTapped($event, investment)">
+        {{ investment.currency }}
+        <ion-badge item-right color="{{investment.pctChange() >= 0 ? 'dark-green' : 'dark-red'}}">
+          {{ investment.pctChange() | number:'1.2-2' }}%
+        </ion-badge>
+      </button>
+    
+  </ion-list>
+    
 </ion-content>

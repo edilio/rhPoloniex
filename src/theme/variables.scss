@@ -24,17 +24,27 @@ $font-path: "../assets/fonts";
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #387ef5,
+  primary:    #222,
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
   dark:       #222,
+  original-primary:    #387ef5,
   dark-green: #4EA227, 
   dark-yellow: #CC9205, 
-  dark-red:   #B93D30,
+  dark-red:   #A42015,
   polo-base:  #06595E,
-  polo-light: #EEC069
+  polo-light: #FBF4C7,
+  polo-light-green: #DAE7E6
 );
+
+$background-color: #04292C;
+$text-color: #FBF4C7;
+
+//$font-size-base: 1rem;
+
+// $list-ios-activated-background-color: #CC9205;
+// $list-md-activated-background-color: #CC9205;
 
 
 // App iOS Variables
