@@ -100,9 +100,9 @@ export class Portfolio {
   updateInvestment(investment: Investment, args) {
     //currencyPair, last, lowestAsk, highestBid, percentChange, baseVolume, quoteVolume, isFrozen, 24hrHigh, 24hrLow
     
-    let currentPrice = args[1];
-        
-
+    let currentPrice = args[1]; 
+    
+           
     investment.actualPrice = currentPrice;
     investment.lowestAsk = args[2];
     investment.highestBid = args[3];
@@ -114,6 +114,7 @@ export class Portfolio {
     investment._24hrLow = args[9];
 
   }
+
   launchTicker() {
       let wsuri = "wss://api.poloniex.com";
       let connection = new Connection({

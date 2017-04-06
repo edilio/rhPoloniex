@@ -4,32 +4,43 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Portfolio</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addInvestment()">
+        <ion-icon name="add-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+
   </ion-navbar>
 </ion-header>
 
 <ion-content>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col  text-center width-20>
-        <ion-icon name="logo-bitcoin"> {{ totalBalanceInBTC() | number:'1.2-2'}}</ion-icon>
-      </ion-col>
-      <ion-col  text-center width-30>
-        <ion-icon  name="logo-usd"> {{ totalBalanceInUSD() | number:'1.2-2' }}</ion-icon> 
-      </ion-col>
-      <ion-col  text-center width-50>
-        <ion-icon item-right name="logo-bitcoin"></ion-icon>1 =<ion-icon item-left name="logo-usd"></ion-icon> {{ price1btc| number:'1.2-2' }}
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <ion-card>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col  text-center width-20>
+            <ion-icon name="logo-bitcoin"> {{ totalBalanceInBTC() | number:'1.2-2'}}</ion-icon>
+          </ion-col>
+          <ion-col  text-center width-30>
+            <ion-icon  name="logo-usd"> {{ totalBalanceInUSD() | number:'1.2-2' }}</ion-icon> 
+          </ion-col>
+          <ion-col  text-center width-50>
+            <ion-icon item-right name="logo-bitcoin"></ion-icon>1 =<ion-icon item-left name="logo-usd"></ion-icon> {{ price1btc| number:'1.2-2' }}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
 
   
   <ion-list>
-    <ion-list-header>
+    <!--<ion-list-header>
       <button ion-button color="primary" (click)="addInvestment()">
         <ion-icon item-right name="add"></ion-icon> Add
     </button>
-    </ion-list-header>
+    </ion-list-header>-->
 
     <ion-item-sliding #item *ngFor="let investment of portfolio">
 
