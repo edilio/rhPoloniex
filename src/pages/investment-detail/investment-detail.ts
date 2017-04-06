@@ -21,6 +21,11 @@ export class InvestmentDetailPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad InvestmentDetailPage');
+    this.investment.isNew = this.investment.currency == 'NEW';
+  }
+
+  ionViewDidUnload() {
+    this.investment.isNew = this.investment.currency == 'NEW';
   }
 
 }

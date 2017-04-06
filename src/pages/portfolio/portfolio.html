@@ -25,14 +25,29 @@
 
   
   <ion-list>
+    <ion-list-header>
+      <button ion-button color="primary" (click)="addInvestment()">
+        <ion-icon item-right name="add"></ion-icon> Add
+    </button>
+    </ion-list-header>
 
-    <button ion-item *ngFor="let investment of portfolio" (click)="itemTapped($event, investment)">
+    <ion-item-sliding #item *ngFor="let investment of portfolio">
+
+      <button ion-item (click)="itemTapped($event, investment)">
         {{ investment.currency }}
         <ion-badge item-right color="{{investment.pctChange() >= 0 ? 'dark-green' : 'dark-red'}}">
           {{ investment.pctChange() | number:'1.2-2' }}%
         </ion-badge>
+             
       </button>
-    
+      <ion-item-options>
+          <button color="danger" (click)="removeInvestment(investment)">
+            <ion-icon name="trash"></ion-icon> Delete
+          </button>
+      </ion-item-options>
+
+    </ion-item-sliding>
   </ion-list>
+  
     
 </ion-content>

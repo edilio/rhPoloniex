@@ -16,6 +16,11 @@
   <ion-list *ngIf="investment">
 
 
+    <ion-item *ngIf="investment.isNew"> 
+      <ion-label color="polo-light" fixed>Currency Symbol:</ion-label>
+      <ion-input type="text" text-right placeholder="Symbol" [(ngModel)]="investment.currency"></ion-input>
+    </ion-item>
+
     <ion-item> 
       Total Balance:
       <ion-badge item-right color="dark-yellow">

@@ -18,7 +18,8 @@ export class Investment {
   _24hrLow: number;
   
   constructor (public currency: string, public balance: any = 0, public openOrders: any= 0,
-               public avgCost: number, public actualPrice: number, public pctOfInvestment: number = 0) {
+               public avgCost: number, public actualPrice: number, public pctOfInvestment: number = 0,
+               public isNew: boolean = true) {
 
   }
   totalBalance() {
@@ -48,14 +49,14 @@ export class Portfolio {
   
   constructor(public navCtrl: NavController) {
     this.portfolio = [
-      new Investment('BTC', 0.00000001, 0, 1, 1),
-      new Investment('XBC', 14.969794, 0, 0.053091427574999996, 0),
-      new Investment('XMR', 91.404270, 0, 0.01881500, 0),
-      new Investment('ETH', 41.935950, 0, 0.04902952136000001, 0),
-      new Investment('ZEC', 21.831537, 0, 0.06091212, 0),
-      new Investment('DASH', 21.945000, 0, 0.078169995, 0),
-      new Investment('XRP', 31293.81558430, 0,0.00003316, 0)
-    
+      new Investment('BTC', 0.22353417, 0, 1, 1, 0, false),
+      new Investment('XBC', 14.96979426, 0, 0.053091427574999996, 0, 0, false),
+      new Investment('XMR', 61.40426972	+ 4.185, 0, 0.01881500, 0, 0, false),
+      new Investment('ETH', 41.935950, 0, 0.04902952136000001, 0, 0, false),
+      new Investment('ZEC', 22.33917927, 0, 0.06091212, 0, 0, false),
+      new Investment('DASH', 21.945000, 0, 0.078169995, 0, 0, false),
+      new Investment('XRP', 31293.81558430, 0,0.00003316, 0, 0, false),
+      new Investment('STR', 99750.00000010,0, 0.00000272, 0, 0, false)
     ];
     this.updatePctOfInvestment();
     this.launchTicker();
@@ -150,7 +151,18 @@ export class Portfolio {
   }
 
   itemTapped = function(event, item) {
-    console.log(item.currency);
+    this.navCtrl.push(InvestmentDetailPage, {
+        item: item
+    });
+  }
+
+  removeInvestment(investment) {
+    this.portfolio = this.portfolio.filter(item => item.currency !== investment.currency);
+  }
+
+  addInvestment() {
+    let item = new Investment('NEW', 0, 0, 0, 0);
+    this.portfolio.push(item);
     this.navCtrl.push(InvestmentDetailPage, {
         item: item
     });
