@@ -11,13 +11,13 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col col-4 text-center width-30>
+      <ion-col  text-center width-20>
         <ion-icon name="logo-bitcoin"> {{ totalBalanceInBTC() | number:'1.2-2'}}</ion-icon>
       </ion-col>
-      <ion-col col-4 text-center width-30>
+      <ion-col  text-center width-30>
         <ion-icon  name="logo-usd"> {{ totalBalanceInUSD() | number:'1.2-2' }}</ion-icon> 
       </ion-col>
-      <ion-col col-4 text-center width-40>
+      <ion-col  text-center width-50>
         <ion-icon item-right name="logo-bitcoin"></ion-icon>1 =<ion-icon item-left name="logo-usd"></ion-icon> {{ price1btc| number:'1.2-2' }}
       </ion-col>
     </ion-row>
