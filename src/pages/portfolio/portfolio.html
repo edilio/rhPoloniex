@@ -17,19 +17,19 @@
 <ion-content>
 
 <ion-toolbar>
-    <!--<ion-title>Scrolls with the content</ion-title>-->
-  
   <ion-grid>
     <ion-row>
-      <ion-col  text-left width-20 class="row-bk">
+      <ion-col  text-center padding-right class="row-bk">
+        <ion-icon name="logo-bitcoin"><b>1 => </b></ion-icon>
+        <ion-icon name="logo-usd"><b>{{ data.price1btc | number:'1.2-2' }}</b></ion-icon> 
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col text-right width-30 padding-right class="row-bk">
         <ion-icon name="logo-bitcoin"> <b>{{ data.totalBalanceInBTC() | number:'1.2-2'}}</b></ion-icon>
       </ion-col>
-      <ion-col  text-center width-35 class="row-bk">
+      <ion-col  text-left width-70 padding-left class="row-bk">
         <ion-icon  name="logo-usd"> <b>{{ data.totalBalanceInUSD() | number:'1.2-2' }}</b></ion-icon> 
-      </ion-col>
-      <ion-col  text-right width-45 class="row-bk">
-        <ion-icon name="logo-bitcoin"><b>1 = </b></ion-icon>
-        <ion-icon name="logo-usd"><b>{{ data.price1btc | number:'1.2-2' }}</b></ion-icon> 
       </ion-col>
     </ion-row>
   </ion-grid>
