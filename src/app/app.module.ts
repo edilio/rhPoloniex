@@ -10,6 +10,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { MiningCalculatorPage } from '../pages/mining-calculator/mining-calculator';
 import { InvestmentCalculatorPage } from '../pages/investment-calculator/investment-calculator';
 import { InvestmentDetailPage } from '../pages/investment-detail/investment-detail';
+import { Polo } from '../providers/polo';
 import { PoloData } from '../providers/polo-data';
 
 @NgModule({
@@ -37,6 +38,7 @@ import { PoloData } from '../providers/polo-data';
   ],
   providers: [
     PoloData,
+    Polo,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
