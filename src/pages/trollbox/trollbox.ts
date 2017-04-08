@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController, PopoverController , ViewController} from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 
-//import { LoadingController } from 'ionic-angular';
 import { PoloData } from '../../providers/polo-data';
-import { PopoverPage } from '../popover/popover';
 
 
 @Component({
@@ -18,16 +16,8 @@ export class TrollboxPage {
       public navCtrl: NavController, 
       public navParams: NavParams, 
       public loadingCtrl: LoadingController,
-      public data: PoloData,
-      public popoverCtrl: PopoverController) {
+      public data: PoloData) {
     this.selectedFilter = "all";
-  }
-
-  presentPopover(myEvent) {
-    let popover = this.popoverCtrl.create(PopoverPage);
-    popover.present({
-      ev: myEvent
-    });
   }
 
   presentLoading() {
