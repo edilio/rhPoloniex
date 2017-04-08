@@ -95,7 +95,7 @@ export class PoloData {
         },
         {
             name: 'bitcoin',
-            keywords: ['btc', 'bitcoin']
+            keywords: ['btc', 'bitcoin', 'Segwit']
         },
         {
             name: 'ethereum',
