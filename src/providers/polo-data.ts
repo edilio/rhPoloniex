@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 //import {Observable} from 'rxjs/Rx';
 import { Connection } from 'autobahn';
+import { Polo } from './polo';
 
 /*
   Generated class for the PoloData provider.
@@ -73,8 +74,7 @@ export class PoloData {
   msgs: any;
   selectedFilter: string;
   
-
-  constructor(public http: Http){ 
+  constructor(public http: Http, public polo: Polo){ 
     // investment init
     this.portfolio = [
       new Investment('BTC', 0.22353417, 0, 1, 1, 0, false),
@@ -86,6 +86,7 @@ export class PoloData {
       new Investment('XRP', 31293.81558430, 0,0.00003316, 0, 0, false),
       new Investment('STR', 99750.00000010,0, 0.00000272, 0, 0, false)
     ];
+    this.updatePorfolioPrices();
 
     //trollbox init
     this.keywords  = [
@@ -272,5 +273,24 @@ export class PoloData {
     investment._24hrLow = args[9];
   }
   
+  updatePorfolioPrices() {
+    let tickers = this.polo.returnTicker();
+    setTimeout(() => {
+      tickers.forEach(obj => {
+          for (let pair in obj) {
+            let ticker = obj[pair];
+            if (pair.startsWith('BTC_')) {
+              let currency = pair.substring(4),
+                  inv = this.getCurrencyData(currency);
+              if (inv && inv.actualPrice == 0) {
+                inv.actualPrice = ticker['last'];
+              }
+            }
+          }
+          
+        })
+    }, 1000);
+    
+  }
 
 }
