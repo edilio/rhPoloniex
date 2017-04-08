@@ -65,13 +65,13 @@ export class PoloData {
   portfolio: any;
   price1btc: any;
 
-  // keywords: Keyword[];
-  // hasReceivedMessage: boolean;
-  // tabs: string[];
-  // allTabs: string[];
-  // keywordsPerTab: any;
-  // msgs: any;
-  // selectedFilter: string;
+  keywords: Keyword[];
+  hasReceivedMessage: boolean;
+  tabs: string[];
+  allTabs: string[];
+  keywordsPerTab: any;
+  msgs: any;
+  selectedFilter: string;
   
 
   constructor(public http: Http){ 
@@ -88,66 +88,66 @@ export class PoloData {
     ];
 
     //trollbox init
-    // this.keywords  = [
-    //     {   name: 'monero',
-    //         keywords: ['xmr', 'monero']
-    //     },
-    //     {
-    //         name: 'bitcoin',
-    //         keywords: ['btc', 'bitcoin']
-    //     },
-    //     {
-    //         name: 'ethereum',
-    //         keywords: ['eth', 'ethereum']
-    //     },
-    //     {
-    //         name: 'zcash',
-    //         keywords: ['zec', 'zcash']
-    //     },
-    //     {
-    //         name: 'decred',
-    //         keywords: ['dcr', 'decred']
-    //     },
-    //     {
-    //         name: 'golem',
-    //         keywords: ['gnt', 'golem']
-    //     },
-    //     {
-    //         name: 'pascalCoin',
-    //         keywords: ['pasc', 'pascalcoin']
-    //     },
-    //     {
-    //         name: 'dash',
-    //         keywords: ['dash']
-    //     },
-    //     {
-    //         name: 'bitcoinPlus',
-    //         keywords: ['xbc', 'bitcoinPlus']
-    //     },
-    //     {
-    //         name: 'litecoin',
-    //         keywords: ['ltc', 'litecoin']
-    //     },
-    //     {
-    //         name: 'ripple',
-    //         keywords: ['xrp', 'ripple']
-    //     }
-    // ];
-    // this.hasReceivedMessage = false;
-    // this.tabs = this.keywords.map(function(x) { return x.name; });
-    // this.allTabs = ['all'].concat(this.tabs);
-    // // console.log(this.tabs);
-    // this.keywordsPerTab = {};
-    // this.msgs = {};
-    // // var me = this;
-    // // this.me = me;
-    // this.tabs.forEach(function(tab) {
-    //     this.keywordsPerTab[tab] = this.keywords.filter(function(item) {
-    //         return item.name == tab;
-    //     })[0].keywords;
-    //     this.msgs[tab] = [];
-    // });
-    // this.selectedFilter = "all";
+    this.keywords  = [
+        {   name: 'monero',
+            keywords: ['xmr', 'monero']
+        },
+        {
+            name: 'bitcoin',
+            keywords: ['btc', 'bitcoin']
+        },
+        {
+            name: 'ethereum',
+            keywords: ['eth', 'ethereum']
+        },
+        {
+            name: 'zcash',
+            keywords: ['zec', 'zcash']
+        },
+        {
+            name: 'decred',
+            keywords: ['dcr', 'decred']
+        },
+        {
+            name: 'golem',
+            keywords: ['gnt', 'golem']
+        },
+        {
+            name: 'pascalCoin',
+            keywords: ['pasc', 'pascalcoin']
+        },
+        {
+            name: 'dash',
+            keywords: ['dash']
+        },
+        {
+            name: 'bitcoinPlus',
+            keywords: ['xbc', 'bitcoinPlus']
+        },
+        {
+            name: 'litecoin',
+            keywords: ['ltc', 'litecoin']
+        },
+        {
+            name: 'ripple',
+            keywords: ['xrp', 'ripple']
+        }
+    ];
+    this.hasReceivedMessage = false;
+    this.tabs = this.keywords.map(function(x) { return x.name; });
+    this.allTabs = ['all'].concat(this.tabs);
+    // console.log(this.tabs);
+    this.keywordsPerTab = {};
+    this.msgs = {};
+    let me = this;
+    // this.me = me;
+    this.tabs.forEach(function(tab) {
+        me.keywordsPerTab[tab] = me.keywords.filter(function(item) {
+            return item.name == tab;
+        })[0].keywords;
+        me.msgs[tab] = [];
+    });
+    this.selectedFilter = "all";
 
     this.launchTicker();
   }
@@ -179,38 +179,38 @@ export class PoloData {
               }
           }
 
-          // function trollboxEvent (args, kwargs) {
-          //     var msg = args[3].toLowerCase();
+          function trollboxEvent (args, kwargs) {
+              var msg = args[3].toLowerCase();
 
-          //     // console.log(msg);
-          //     me.tabs.forEach(function (tab) {
+              // console.log(msg);
+              me.tabs.forEach(function (tab) {
 
-          //         me.keywordsPerTab[tab].forEach(function (item) {
-          //             var msgs = me.msgs[tab];
-          //             if (item == 'eth') {
-          //                 msg = msg.replace('terrybeth', '')
-          //             }
-          //             if (msg.indexOf(item) > -1) {
-          //                 console.log(msg);
-          //                 if (msgs.indexOf(msg) == -1) {
-          //                     let x: Message = {
-          //                       'time': new Date(args[1]*1000),
-          //                       'author': args[2],
-          //                       message: msg};
+                  me.keywordsPerTab[tab].forEach(function (item) {
+                      var msgs = me.msgs[tab];
+                      if (item == 'eth') {
+                          msg = msg.replace('terrybeth', '')
+                      }
+                      if (msg.indexOf(item) > -1) {
+                          console.log(msg);
+                          if (msgs.indexOf(msg) == -1) {
+                              let x: Message = {
+                                'time': new Date(args[1]*1000),
+                                'author': args[2],
+                                message: msg};
 
-          //                     msgs.unshift(x);
-          //                     if (msgs.length > 100) {
-          //                         msgs.pop();
-          //                     }
-          //                     me.hasReceivedMessage = true;
-          //                     this.$apply();
+                              msgs.unshift(x);
+                              if (msgs.length > 100) {
+                                  msgs.pop();
+                              }
+                              me.hasReceivedMessage = true;
+                              //this.$apply();
 
-          //                 }
-          //             }
-          //         })
-          //     });
+                          }
+                      }
+                  })
+              });
 
-          // }
+          }
 
           session.subscribe('ticker', tickerEvent);
           //session.subscribe('trollbox', trollboxEvent);
