@@ -203,7 +203,7 @@ export class PoloData {
                                   msgs.pop();
                               }
                               me.hasReceivedMessage = true;
-                              //this.$apply();
+                              this.$apply();
 
                           }
                       }
@@ -213,7 +213,7 @@ export class PoloData {
           }
 
           session.subscribe('ticker', tickerEvent);
-          //session.subscribe('trollbox', trollboxEvent);
+          session.subscribe('trollbox', trollboxEvent);
       }
 
       connection.onclose = function () {

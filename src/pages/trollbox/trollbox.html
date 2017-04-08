@@ -22,30 +22,32 @@
     </ion-list-header>
 
 
-    <ion-item *ngFor="let d of allTabs"  ng-value="d">
+    <ion-item *ngFor="let d of data.allTabs"  ng-value="d">
       <ion-label>{{ d }}</ion-label>
       <ion-radio value="{{ d }}">{{ d }}</ion-radio>
     </ion-item>
   </ion-list>
         
-  <div *ngIf="!hasReceivedMessage">
+  <div *ngIf="!data.hasReceivedMessage">
       Waiting for First Msg.
   </div>
   <hr>
   <div>
       <a href="http://xmr.mockingjaysoft.com/blog/how-to-earn-41376-dollars-with-cryptocurrencies-in-less-than-one-year.html">How to Earn 41,376.00 dollars with Cryptocurrencies in less than one year</a>
   </div>
-  <div *ngFor="let tab of tabs">
-    <ion-list *ngIf="(selectedFilter == 'all') || (selectedFilter == tab)">
-      <ion-list-header>
-        {{ tab }}
-      </ion-list-header>
-      <ion-item *ngFor="let msg of msgs[tab]" text-wrap>
-        <h3>{{msg.author}}:</h3>
-        <!--<h3>{{msg.author}} at {{msg.time}} </h3>-->
-        <p>{{ msg.message }}</p>
-      </ion-item>
-    </ion-list>
-    
+  <div *ngIf="data.msgs !== undefined">
+    <div *ngFor="let tab of data.tabs">
+      <ion-list *ngIf="(selectedFilter == 'all') || (selectedFilter == tab)">
+        <ion-list-header>
+          {{ tab }}
+        </ion-list-header>
+        <ion-item *ngFor="let msg of data.msgs[tab]" text-wrap>
+          <h3>{{msg.author}}:</h3>
+          <!--<h3>{{msg.author}} at {{msg.time}} </h3>-->
+          <p>{{ msg.message }}</p>
+        </ion-item>
+      </ion-list>
+      
+    </div>
   </div>
 </ion-content>
