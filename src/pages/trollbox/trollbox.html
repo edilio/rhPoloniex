@@ -30,9 +30,8 @@
       <ion-option *ngFor="let d of data.allTabs" ng-value="d">{{ d }}</ion-option>
       <ion-option value="{{ d }}">{{ d }}</ion-option>
     </ion-select>
-</ion-item>
+  </ion-item>
 
-  
   <hr>  
   <div *ngIf="data.msgs !== undefined">
     <div *ngFor="let tab of data.tabs">

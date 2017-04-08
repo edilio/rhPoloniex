@@ -7,8 +7,8 @@ import { TrollboxPage } from '../pages/trollbox/trollbox';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { MiningCalculatorPage } from '../pages/mining-calculator/mining-calculator';
-import { InvestmentCalculatorPage } from '../pages/investment-calculator/investment-calculator';
+//import { MiningCalculatorPage } from '../pages/mining-calculator/mining-calculator';
+//import { InvestmentCalculatorPage } from '../pages/investment-calculator/investment-calculator';
 import { InvestmentDetailPage } from '../pages/investment-detail/investment-detail';
 import { Polo } from '../providers/polo';
 import { PoloData } from '../providers/polo-data';
@@ -19,8 +19,6 @@ import { PoloData } from '../providers/polo-data';
     Portfolio,
     Calculators,
     TrollboxPage,
-    MiningCalculatorPage,
-    InvestmentCalculatorPage,
     InvestmentDetailPage
   ],
   imports: [
@@ -32,8 +30,6 @@ import { PoloData } from '../providers/polo-data';
     Portfolio,
     Calculators,
     TrollboxPage,
-    MiningCalculatorPage,
-    InvestmentCalculatorPage,
     InvestmentDetailPage,
   ],
   providers: [
