@@ -63,7 +63,7 @@ export class Investment {
 export class PoloData {
 
   portfolio: any;
-  price1btc: any;
+  price1btc: any = 0;
 
   keywords: Keyword[];
   hasReceivedMessage: boolean;
@@ -136,11 +136,9 @@ export class PoloData {
     this.hasReceivedMessage = false;
     this.tabs = this.keywords.map(function(x) { return x.name; });
     this.allTabs = ['all'].concat(this.tabs);
-    // console.log(this.tabs);
     this.keywordsPerTab = {};
     this.msgs = {};
     let me = this;
-    // this.me = me;
     this.tabs.forEach(function(tab) {
         me.keywordsPerTab[tab] = me.keywords.filter(function(item) {
             return item.name == tab;
@@ -149,6 +147,7 @@ export class PoloData {
     });
     this.selectedFilter = "all";
 
+    // calling ws
     this.launchTicker();
   }
 
@@ -226,12 +225,12 @@ export class PoloData {
   totalBalanceInBTC() {
     let onlyBTCValues = this.portfolio.map(x=>x.btcValue());
     let totalBTC = onlyBTCValues.reduce((pv, cv, ci, arr) => (pv + cv), 0);
-    return totalBTC;
+    return totalBTC || 0;
   }
 
   totalBalanceInUSD() {
     let totalBTC = this.totalBalanceInBTC();
-    return totalBTC * this.price1btc;
+    return totalBTC * this.price1btc || 0;
   }
 
   updatePctOfInvestment() {

@@ -1,14 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
-import { Connection } from 'autobahn';
-import { LoadingController } from 'ionic-angular';
-import { PoloData } from '../../providers/polo-data';
-/*
-  Generated class for the Trollbox page.
+import { NavController, NavParams, LoadingController, PopoverController , ViewController} from 'ionic-angular';
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
+//import { LoadingController } from 'ionic-angular';
+import { PoloData } from '../../providers/polo-data';
+import { PopoverPage } from '../popover/popover';
+
 
 @Component({
   selector: 'page-trollbox',
@@ -18,9 +14,20 @@ export class TrollboxPage {
 
   selectedFilter: string;
   
-  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController,
-  public data: PoloData) {
+  constructor(
+      public navCtrl: NavController, 
+      public navParams: NavParams, 
+      public loadingCtrl: LoadingController,
+      public data: PoloData,
+      public popoverCtrl: PopoverController) {
     this.selectedFilter = "all";
+  }
+
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create(PopoverPage);
+    popover.present({
+      ev: myEvent
+    });
   }
 
   presentLoading() {
@@ -33,7 +40,7 @@ export class TrollboxPage {
 
   ionViewDidLoad() {
     //this.presentLoading();
-    console.log('ionViewDidLoad TrollboxPage');
+    //console.log('ionViewDidLoad TrollboxPage');
   }
 
 

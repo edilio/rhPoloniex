@@ -33,7 +33,7 @@ import { PoloData } from '../providers/polo-data';
     TrollboxPage,
     MiningCalculatorPage,
     InvestmentCalculatorPage,
-    InvestmentDetailPage
+    InvestmentDetailPage,
   ],
   providers: [
     PoloData,
