@@ -29,9 +29,10 @@
       </ion-item>
       
     </ion-list>
+
     <h3>Result:</h3>
-    <div>Amount of Currency bought: <b>{{amountCurrency() | number:'1.0-0'}}</b></div>
-    <div>Cost of XMR buying: <b>{{costOfBuying() | currency:'USD':true:'1.2-2'}}</b></div>
+    <div>Amount: <b>{{amountCurrency() | number:'1.0-0'}}</b></div>
+    <div>Cost: <b> text-rigth{{costOfBuying() | currency:'USD':true:'1.2-2'}}</b></div>
     <div>Total Sale: <b>{{totalSaleInvestment() | currency:'USD':true:'1.2-2'}}</b></div>
     <div>Profit: <b>{{profitInvestment() | currency:'USD':true:'1.2-2'}}</b></div>
     <div>ROI Investment: <b>{{roiInvestment() | number:'1.2-2'}}%</b></div>

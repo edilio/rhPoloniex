@@ -10,6 +10,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { MiningCalculatorPage } from '../pages/mining-calculator/mining-calculator';
 import { InvestmentCalculatorPage } from '../pages/investment-calculator/investment-calculator';
 import { InvestmentDetailPage } from '../pages/investment-detail/investment-detail';
+import { PoloData } from '../providers/polo-data';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { InvestmentDetailPage } from '../pages/investment-detail/investment-deta
     TrollboxPage,
     MiningCalculatorPage,
     InvestmentCalculatorPage,
-    InvestmentDetailPage,
+    InvestmentDetailPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -32,9 +33,10 @@ import { InvestmentDetailPage } from '../pages/investment-detail/investment-deta
     TrollboxPage,
     MiningCalculatorPage,
     InvestmentCalculatorPage,
-    InvestmentDetailPage,
+    InvestmentDetailPage
   ],
   providers: [
+    PoloData,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

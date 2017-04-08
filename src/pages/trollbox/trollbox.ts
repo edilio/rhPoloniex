@@ -95,7 +95,7 @@ export class TrollboxPage {
         me.msgs[tab] = [];
     });
     this.selectedFilter = "all";
-    this.launchTrollbox();
+    //this.launchTrollbox();
   }
 
   presentLoading() {
@@ -107,7 +107,7 @@ export class TrollboxPage {
   }
 
   ionViewDidLoad() {
-    this.presentLoading();
+    //this.presentLoading();
     console.log('ionViewDidLoad TrollboxPage');
   }
 
@@ -165,7 +165,7 @@ export class TrollboxPage {
       };
 
       connection.onclose = function () {
-          console.log("Websocket connection closed");
+          console.log("Websocket trollbox connection closed");
       };
 
       connection.open();

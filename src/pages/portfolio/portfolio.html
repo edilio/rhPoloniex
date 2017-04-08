@@ -1,11 +1,11 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
+    <button ion-button menuToggle left>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Portfolio</ion-title>
 
-    <ion-buttons end>
+    <ion-buttons right>
       <button ion-button icon-only (click)="addInvestment()">
         <ion-icon name="add-circle"></ion-icon>
       </button>
@@ -16,43 +16,38 @@
 
 <ion-content>
 
-<!--<br>-->
+<ion-toolbar>
+    <ion-title>Scrolls with the content</ion-title>
+  
   <ion-grid>
-    <ion-row >
-      <ion-col  text-center width-20 class="row-bk">
-        <ion-icon name="logo-bitcoin"> {{ totalBalanceInBTC() | number:'1.2-2'}}</ion-icon>
+    <ion-row>
+      <ion-col  text-left width-20 class="row-bk">
+        <ion-icon name="logo-bitcoin"> <b>{{ data.totalBalanceInBTC() | number:'1.2-2'}}</b></ion-icon>
       </ion-col>
-      <ion-col  text-center width-30 class="row-bk">
-        <ion-icon  name="logo-usd"> {{ totalBalanceInUSD() | number:'1.2-2' }}</ion-icon> 
+      <ion-col  text-center width-35 class="row-bk">
+        <ion-icon  name="logo-usd"> <b>{{ data.totalBalanceInUSD() | number:'1.2-2' }}</b></ion-icon> 
       </ion-col>
-      <ion-col  text-center width-50 class="row-bk">
-        <ion-icon item-right name="logo-bitcoin"></ion-icon>1 =<ion-icon item-left name="logo-usd"></ion-icon> {{ price1btc| number:'1.2-2' }}
+      <ion-col  text-right width-45 class="row-bk">
+        <ion-icon name="logo-bitcoin"><b>1 = </b></ion-icon>
+        <ion-icon name="logo-usd"><b>{{ data.price1btc | number:'1.2-2' }}</b></ion-icon> 
       </ion-col>
     </ion-row>
-  </ion-grid>  
-<!--<br>-->
+  </ion-grid>
+</ion-toolbar>
 
-  
-
-  
   <ion-list>
-
-
     <ion-item-sliding #item *ngFor="let investment of portfolio">
-
       <button ion-item (click)="itemTapped($event, investment)">
         {{ investment.currency }}
         <ion-badge item-right color="{{investment.pctChange() >= 0 ? 'dark-green' : 'dark-red'}}">
           {{ investment.pctChange() | number:'1.2-2' }}%
-        </ion-badge>
-             
+        </ion-badge>   
       </button>
       <ion-item-options>
-          <button color="danger" (click)="removeInvestment(investment)">
+          <button color="dark-red" (click)="removeInvestment(investment)">
             <ion-icon name="trash"></ion-icon> Delete
           </button>
       </ion-item-options>
-
     </ion-item-sliding>
   </ion-list>
   

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { Investment } from '../portfolio/portfolio'
+import { Investment } from '../../providers/polo-data';
+
 
 /*
   Generated class for the InvestmentDetail page.

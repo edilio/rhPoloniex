@@ -46115,3 +46115,8 @@ ion-navbar.toolbar {
 .toolbar-background {
   background: #EEC069;
 }
+
+page-portfolio .row-bk {
+  background: #222;
+  height: 30px;
+}
