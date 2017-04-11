@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 
 import { NavController, NavParams } from 'ionic-angular';
-import { MiningCalculatorPage } from '../mining-calculator/mining-calculator';
-import { InvestmentCalculatorPage } from '../investment-calculator/investment-calculator';
 
 @Component({
   selector: 'page-calculators',
@@ -32,16 +30,6 @@ export class Calculators {
     }
   }
   
-  itemTapped(event, item) {
-    let pages = {
-      'Mining': MiningCalculatorPage,
-      'Investment': InvestmentCalculatorPage,
-      
-    }
-    this.navCtrl.push(pages[item.title], {
-        item: item
-    });
-  }
 
 // Investment calculator parameters
   investmentAmount: number = 1000;
