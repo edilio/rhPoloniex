@@ -42,22 +42,24 @@ export class Investment {
   totalBalance() {
     return parseFloat(this.balance) + parseFloat(this.openOrders);
   }
+
   btcValue () {
     return this.totalBalance() * this.actualPrice;
   }
+
   usdValue () {
     return this.btcValue() * this.price1btc;
   }
+
   pctChange () {
     return (this.actualPrice - this.avgCost)*100 / this.avgCost;
   }
-
 }
 
 @Injectable()
 export class PoloData {
 
-  portfolio: any = [];
+  portfolio: any = [new Investment('BTC', 0, 0, 1, 1, 0, false)];
   price1btc: any = 0;
 
   keywords: Keyword[];
@@ -70,41 +72,23 @@ export class PoloData {
   
   constructor(public http: Http, public polo: Polo, public storage: Storage){ 
 
-    // this.storage.ready().then(() => {
-    //   this.storage.get('my-potfolio').then(data => {
-    //     this.portfolio = data || [];
-
-    //     if (this.portfolio.length === 0){
-    //       this.portfolio = [
-    //         new Investment('BTC', 0.22353417, 0, 1, 1, 0, false),
-    //         new Investment('XMR', 61.40426972	+ 4.185, 0, 0.01881500, 0, 0, false),
-    //         new Investment('ETH', 41.935950, 0, 0.04902952136000001, 0, 0, false),
-    //         new Investment('ZEC', 22.33917927, 0, 0.06091212, 0, 0, false),
-    //         new Investment('DASH', 21.945000, 0, 0.078169995, 0, 0, false),
-    //         new Investment('XRP', 31293.81558430, 0,0.00003316, 0, 0, false)
-    //       ];
-
-    //       this.initValues();
-
-    //     } else this.initValues();
-
-    //   })
-    // });
+    this.storage.ready().then(() => {
+      this.getFromStorage('my-potfolio');
+    });
 
     this.initValues();
-   
   }
 
   initValues(){
-     // investment init
-    this.portfolio = [
-      new Investment('BTC', 0.22353417, 0, 1, 1, 0, false),
-      new Investment('XMR', 61.40426972	+ 4.185, 0, 0.01881500, 0, 0, false),
-      new Investment('ETH', 41.935950, 0, 0.04902952136000001, 0, 0, false),
-      new Investment('ZEC', 22.33917927, 0, 0.06091212, 0, 0, false),
-      new Investment('DASH', 21.945000, 0, 0.078169995, 0, 0, false),
-      new Investment('XRP', 31293.81558430, 0,0.00003316, 0, 0, false)
-    ];
+    
+    // this.portfolio = [
+    //   new Investment('BTC', 0, 0, 1, 1, 0, false),
+    //   new Investment('XMR', 0, 0, 0, 0, 0, false),
+    //   new Investment('ETH', 0, 0, 0, 0, 0, false),
+    //   new Investment('ZEC', 0, 0, 0, 0, 0, false),
+    //   new Investment('DASH', 0, 0, 0, 0, 0, false),
+    //   new Investment('XRP', 0, 0, 0, 0, 0, false)
+    // ];
     this.updatePorfolioPrices();
 
     //trollbox init
@@ -171,12 +155,14 @@ export class PoloData {
     this.launchTicker();
   }
 
-  saveToLocalStg(name: string, info: any){
-    this.storage.set(name, JSON.stringify(info));
+  saveToStorage(name: string, info: any){
+    this.storage.set(name, info);
   }
 
-  getFromLocalStg(name: string){
-    return JSON.parse(localStorage.getItem(name)) || [];
+  getFromStorage(name: string){
+    this.storage.get(name).then(data => {
+        if (data) this.portfolio = data;
+      });
   }
 
   launchTicker() {
@@ -251,11 +237,10 @@ export class PoloData {
   }
 
   totalBalanceInBTC() {
-    if (this.portfolio !== undefined){
-      let onlyBTCValues = this.portfolio.map(x=>x.btcValue());
-      let totalBTC = onlyBTCValues.reduce((pv, cv, ci, arr) => (pv + cv), 0);
+      let onlyBTCValues = this.portfolio.map(x => x.btcValue()),
+        totalBTC = onlyBTCValues.reduce((pv, cv, ci, arr) => (pv + cv), 0);
+
       return totalBTC || 0;
-    } else return 0;
   }
 
   totalBalanceInUSD() {
@@ -275,7 +260,6 @@ export class PoloData {
     this.portfolio.forEach(function(investment){
       investment.price1btc = price;
     });
-    
   }
 
   getCurrencyData = function(ticker) {

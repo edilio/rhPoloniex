@@ -42,7 +42,7 @@
     <ion-item-sliding *ngFor="let investment of portfolio">
       <button ion-item (click)="itemTapped($event, investment)">
         {{ investment.currency }}
-        <ion-badge item-right color="{{investment.pctChange() >= 0 ? 'dark-green' : 'dark-red'}}">
+        <ion-badge item-right color="{{ investment.pctChange() >= 0 ? 'dark-green' : 'dark-red' }}">
           {{ investment.pctChange() | number:'1.2-2' }}%
         </ion-badge>   
       </button>

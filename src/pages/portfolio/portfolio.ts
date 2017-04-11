@@ -27,6 +27,7 @@ export class Portfolio {
 
   removeInvestment(investment) {
     this.portfolio = this.portfolio.filter(item => item.currency !== investment.currency);
+    this.data.saveToStorage('my-potfolio', this.data.portfolio);
   }
 
   addInvestment() {

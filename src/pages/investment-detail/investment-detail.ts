@@ -1,3 +1,4 @@
+import { PoloData } from './../../providers/polo-data';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Investment } from '../../providers/polo-data';
@@ -16,7 +17,7 @@ import { Investment } from '../../providers/polo-data';
 export class InvestmentDetailPage {
   investment: Investment;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public data: PoloData) {
     this.investment = navParams.data.item;
   }
 
@@ -27,6 +28,11 @@ export class InvestmentDetailPage {
 
   ionViewDidUnload() {
     this.investment.isNew = this.investment.currency == 'NEW';
+  }
+
+  ionViewWillLeave() {
+    if (this.investment.currency !== 'NEW')
+      this.data.saveToStorage('my-potfolio', this.data.portfolio);
   }
 
 }
