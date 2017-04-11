@@ -18,7 +18,7 @@
 
   <ion-list>
     <ion-list-header>
-      <p ion-text color="polo-light-green">Portfolio Value</p> 
+      <p ion-text color="polo-light-green">Portfolio Values</p> 
       <span item-right color="polo-light-green"><b>(<ion-icon name='logo-bitcoin'></ion-icon>1 = <ion-icon name='logo-usd'></ion-icon>{{ data.price1btc | number:'1.2-2' }})</b></span> 
     </ion-list-header>
     <ion-item>
@@ -39,7 +39,7 @@
         Crypto Currencies in Portfolio
       </p>    
     </ion-list-header>
-    <ion-item-sliding #item *ngFor="let investment of portfolio">
+    <ion-item-sliding *ngFor="let investment of portfolio">
       <button ion-item (click)="itemTapped($event, investment)">
         {{ investment.currency }}
         <ion-badge item-right color="{{investment.pctChange() >= 0 ? 'dark-green' : 'dark-red'}}">
@@ -47,9 +47,10 @@
         </ion-badge>   
       </button>
       <ion-item-options>
-          <button color="dark-red" (click)="removeInvestment(investment)">
-            <ion-icon name="trash"></ion-icon> Delete
-          </button>
+        <button ion-button color="danger" icon-only (click)="removeInvestment(investment)">
+          <ion-icon name="trash"></ion-icon>
+        </button>
+          
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>

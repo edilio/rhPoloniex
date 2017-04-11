@@ -1,16 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-//import {Observable} from 'rxjs/Rx';
+import { Storage } from '@ionic/storage';
+
 import { Connection } from 'autobahn';
 import { Polo } from './polo';
-
-/*
-  Generated class for the PoloData provider.
-
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular 2 DI.
-*/
 
 
 interface Keyword {
@@ -63,7 +57,7 @@ export class Investment {
 @Injectable()
 export class PoloData {
 
-  portfolio: any;
+  portfolio: any = [];
   price1btc: any = 0;
 
   keywords: Keyword[];
@@ -74,17 +68,42 @@ export class PoloData {
   msgs: any;
   selectedFilter: string;
   
-  constructor(public http: Http, public polo: Polo){ 
-    // investment init
+  constructor(public http: Http, public polo: Polo, public storage: Storage){ 
+
+    // this.storage.ready().then(() => {
+    //   this.storage.get('my-potfolio').then(data => {
+    //     this.portfolio = data || [];
+
+    //     if (this.portfolio.length === 0){
+    //       this.portfolio = [
+    //         new Investment('BTC', 0.22353417, 0, 1, 1, 0, false),
+    //         new Investment('XMR', 61.40426972	+ 4.185, 0, 0.01881500, 0, 0, false),
+    //         new Investment('ETH', 41.935950, 0, 0.04902952136000001, 0, 0, false),
+    //         new Investment('ZEC', 22.33917927, 0, 0.06091212, 0, 0, false),
+    //         new Investment('DASH', 21.945000, 0, 0.078169995, 0, 0, false),
+    //         new Investment('XRP', 31293.81558430, 0,0.00003316, 0, 0, false)
+    //       ];
+
+    //       this.initValues();
+
+    //     } else this.initValues();
+
+    //   })
+    // });
+
+    this.initValues();
+   
+  }
+
+  initValues(){
+     // investment init
     this.portfolio = [
       new Investment('BTC', 0.22353417, 0, 1, 1, 0, false),
-      new Investment('XBC', 14.96979426, 0, 0.053091427574999996, 0, 0, false),
       new Investment('XMR', 61.40426972	+ 4.185, 0, 0.01881500, 0, 0, false),
       new Investment('ETH', 41.935950, 0, 0.04902952136000001, 0, 0, false),
       new Investment('ZEC', 22.33917927, 0, 0.06091212, 0, 0, false),
       new Investment('DASH', 21.945000, 0, 0.078169995, 0, 0, false),
-      new Investment('XRP', 31293.81558430, 0,0.00003316, 0, 0, false),
-      new Investment('STR', 99750.00000010,0, 0.00000272, 0, 0, false)
+      new Investment('XRP', 31293.81558430, 0,0.00003316, 0, 0, false)
     ];
     this.updatePorfolioPrices();
 
@@ -150,6 +169,14 @@ export class PoloData {
 
     // calling ws
     this.launchTicker();
+  }
+
+  saveToLocalStg(name: string, info: any){
+    this.storage.set(name, JSON.stringify(info));
+  }
+
+  getFromLocalStg(name: string){
+    return JSON.parse(localStorage.getItem(name)) || [];
   }
 
   launchTicker() {
@@ -224,9 +251,11 @@ export class PoloData {
   }
 
   totalBalanceInBTC() {
-    let onlyBTCValues = this.portfolio.map(x=>x.btcValue());
-    let totalBTC = onlyBTCValues.reduce((pv, cv, ci, arr) => (pv + cv), 0);
-    return totalBTC || 0;
+    if (this.portfolio !== undefined){
+      let onlyBTCValues = this.portfolio.map(x=>x.btcValue());
+      let totalBTC = onlyBTCValues.reduce((pv, cv, ci, arr) => (pv + cv), 0);
+      return totalBTC || 0;
+    } else return 0;
   }
 
   totalBalanceInUSD() {
