@@ -16,16 +16,16 @@ export class MyApp {
 
   rootPage: any = Portfolio;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: any, icon: string}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Portfolio', component: Portfolio },
-      { title: 'Calculators', component: Calculators },
-      { title: 'Poloniex Trollbox', component: TrollboxPage }
+      { title: 'Portfolio', component: Portfolio, icon: 'briefcase' },
+      { title: 'Calculators', component: Calculators , icon: 'calculator' },
+      { title: 'Trollbox', component: TrollboxPage , icon: 'chatboxes' }
     ];
 
   }

@@ -12,7 +12,7 @@
 
     <ion-item *ngIf="investment.isNew"> 
       <ion-label color="polo-light-green">Currency Symbol</ion-label>
-      <ion-input type="text" text-right placeholder="Symbol" [(ngModel)]="investment.currency" ></ion-input>
+      <ion-input type="text" clearInput text-right placeholder="Symbol" [(ngModel)]="investment.currency" (input)="onCurrencyEnter($event.target.value)"></ion-input>
     </ion-item>
 
     <ion-item> 

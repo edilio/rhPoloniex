@@ -21,8 +21,13 @@ export class InvestmentDetailPage {
   }
 
   ionViewWillLeave() {
-    if (this.investment.currency !== 'NEW')
-      this.data.saveToStorage('my-potfolio', this.data.portfolio);
+    if (this.investment.currency === 'NEW' || this.investment.currency.length === 0){
+      this.data.portfolio.pop();
+    } else this.data.saveToStorage('my-potfolio', this.data.portfolio);
+  }
+
+  onCurrencyEnter(info){
+    this.investment.currency = info.toUpperCase();
   }
 
 }
