@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
@@ -80,15 +81,6 @@ export class PoloData {
   }
 
   initValues(){
-    
-    // this.portfolio = [
-    //   new Investment('BTC', 0, 0, 1, 1, 0, false),
-    //   new Investment('XMR', 0, 0, 0, 0, 0, false),
-    //   new Investment('ETH', 0, 0, 0, 0, 0, false),
-    //   new Investment('ZEC', 0, 0, 0, 0, 0, false),
-    //   new Investment('DASH', 0, 0, 0, 0, 0, false),
-    //   new Investment('XRP', 0, 0, 0, 0, 0, false)
-    // ];
     this.updatePorfolioPrices();
 
     //trollbox init
@@ -159,9 +151,25 @@ export class PoloData {
     this.storage.set(name, info);
   }
 
+  setPortfolio(data){
+   let arr = [];
+    data.forEach(element => {
+      let inv = new Investment(
+        element.currency, 
+        element.balance, 
+        element.openOrders, 
+        element.avgCost, 
+        element.actualPrice, 
+        element.pctOfInvestment,
+        false);
+      arr.push(inv);
+    });
+    if (arr.length > 0) this.portfolio = arr;
+  }
+
   getFromStorage(name: string){
     this.storage.get(name).then(data => {
-        if (data) this.portfolio = data;
+        if (name === 'my-potfolio' && data) this.setPortfolio(data);
       });
   }
 

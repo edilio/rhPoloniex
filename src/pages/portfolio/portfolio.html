@@ -39,7 +39,7 @@
         Crypto Currencies in Portfolio
       </p>    
     </ion-list-header>
-    <ion-item-sliding *ngFor="let investment of portfolio">
+    <ion-item-sliding *ngFor="let investment of data.portfolio">
       <button ion-item (click)="itemTapped($event, investment)">
         {{ investment.currency }}
         <ion-badge item-right color="{{ investment.pctChange() >= 0 ? 'dark-green' : 'dark-red' }}">

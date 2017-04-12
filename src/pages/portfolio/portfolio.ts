@@ -11,7 +11,6 @@ import { Investment, PoloData } from '../../providers/polo-data';
   templateUrl: 'portfolio.html'
 })
 export class Portfolio {
-  portfolio: Investment[] = this.data.portfolio;
   watchList: Investment[];
   
   constructor(
@@ -26,13 +25,13 @@ export class Portfolio {
   }
 
   removeInvestment(investment) {
-    this.portfolio = this.portfolio.filter(item => item.currency !== investment.currency);
+    this.data.portfolio = this.data.portfolio.filter(item => item.currency !== investment.currency);
     this.data.saveToStorage('my-potfolio', this.data.portfolio);
   }
 
   addInvestment() {
     let item = new Investment('NEW', 0, 0, 0, 0);
-    this.portfolio.push(item);
+    this.data.portfolio.push(item);
     this.navCtrl.push(InvestmentDetailPage, {
         item: item
     });
