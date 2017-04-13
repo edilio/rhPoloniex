@@ -6,8 +6,8 @@
     <ion-title>Portfolio</ion-title>
 
     <ion-buttons right>
-      <button ion-button icon-only (click)="addInvestment()">
-        <ion-icon name="add-circle"></ion-icon>
+      <button ion-button icon-only (click)="addInvestment()" padding-right>
+        <ion-icon name="add-circle-outline"></ion-icon>
       </button>
     </ion-buttons>
 
@@ -16,10 +16,10 @@
 
 <ion-content>
 
-  <ion-list>
+  <ion-list inset>
     <ion-list-header>
-      <p ion-text color="polo-light-green">Portfolio Values</p> 
-      <span item-right color="polo-light-green"><b>(<ion-icon name='logo-bitcoin'></ion-icon>1 = <ion-icon name='logo-usd'></ion-icon>{{ data.price1btc | number:'1.2-2' }})</b></span> 
+      <p ion-text color="polo-base">Totals</p> 
+      <span item-right color="polo-base"><b>(<ion-icon name='logo-bitcoin'></ion-icon>1 = <ion-icon name='logo-usd'></ion-icon>{{ data.price1btc | number:'1.2-2' }})</b></span> 
     </ion-list-header>
     <ion-item>
       <ion-icon name='logo-bitcoin' item-left></ion-icon>
@@ -33,19 +33,20 @@
     </ion-item> 
   </ion-list>
 
-  <ion-list>
+  <ion-list inset>
     <ion-list-header>
-      <p ion-text color="polo-light-green">
-        Crypto Currencies in Portfolio
+      <p ion-text color="polo-base">
+        Crypto Currencies
       </p>    
     </ion-list-header>
     <ion-item-sliding *ngFor="let investment of data.portfolio">
-      <button ion-item (click)="itemTapped($event, investment)">
-        {{ investment.currency }}
-        <ion-badge item-right color="{{ investment.pctChange() >= 0 ? 'dark-green' : 'dark-red' }}">
+      <ion-item>
+        <b>{{ investment.currency }}</b>
+        <button ion-button small item-right style="width:100px" color="{{ investment.pctChange() >= 0 ? 'dark-green' : 'dark-red' }}" (click)="itemTapped($event, investment)" >
           {{ investment.pctChange() | number:'1.2-2' }}%
-        </ion-badge>   
-      </button>
+        </button>
+        
+      </ion-item>>
       <ion-item-options>
         <button ion-button color="danger" icon-only (click)="removeInvestment(investment)">
           <ion-icon name="trash"></ion-icon>
@@ -54,6 +55,5 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
-  
     
 </ion-content>

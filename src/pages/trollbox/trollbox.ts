@@ -1,5 +1,6 @@
+import { CurrencySelectPage } from './../currency-select/currency-select';
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, ModalController} from 'ionic-angular';
 
 import { PoloData } from '../../providers/polo-data';
 
@@ -15,23 +16,36 @@ export class TrollboxPage {
   constructor(
       public navCtrl: NavController, 
       public navParams: NavParams, 
-      public loadingCtrl: LoadingController,
-      public data: PoloData) {
+      //public popoverCtrl: PopoverController,
+      public data: PoloData,
+      public modalCtrl: ModalController) {
     this.selectedFilter = "all";
   }
 
-  presentLoading() {
-    let loader = this.loadingCtrl.create({
-      content: "Please wait...",
-      duration: 3000
+  // presentPopover(myEvent) {
+  //   let popover = this.popoverCtrl.create(CurrencySelectPage,{filter: this.selectedFilter});
+    
+  //   popover.present({
+  //     ev: myEvent
+  //   });
+
+  //   popover.onDidDismiss((popoverData) => {
+  //     if (popoverData) this.selectedFilter = popoverData;
+  //   })
+  // }
+
+  presentContactModal() {
+    let contactModal = this.modalCtrl.create(CurrencySelectPage,{filter: this.selectedFilter});
+    contactModal.present();
+
+    contactModal.onDidDismiss((newFilter) => {
+      if (newFilter) this.selectedFilter = newFilter;
     });
-    loader.present();
   }
 
-  ionViewDidLoad() {
+  //ionViewDidLoad() {
     //this.presentLoading();
     //console.log('ionViewDidLoad TrollboxPage');
-  }
-
+  //}
 
 }

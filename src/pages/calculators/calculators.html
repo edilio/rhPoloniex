@@ -24,7 +24,7 @@
     <div *ngSwitchCase="'investment'">
       <ion-list>
         <ion-list-header>
-          <p ion-text color="polo-light-green">Input Values</p>    
+          <p ion-text color="polo-base">Input Values</p>    
         </ion-list-header>
 
         <ion-item>
@@ -45,34 +45,34 @@
 
       <ion-list>
         <ion-list-header>
-          <p ion-text color="polo-light-green">Results</p>    
+          <p ion-text color="polo-base">Results</p>    
         </ion-list-header>
         <ion-item>
-          <ion-label color="polo-light-green">Amount</ion-label>
+          <ion-label>Amount</ion-label>
           <ion-badge item-right color="dark-yellow">
             {{amountCurrency() | number:'1.0-0'}}
           </ion-badge>
         </ion-item>
         <ion-item>
-          <ion-label color="polo-light-green">Cost</ion-label>
+          <ion-label>Cost</ion-label>
           <ion-badge item-right color="dark-yellow">
             {{costOfBuying() | currency:'USD':true:'1.2-2'}}
           </ion-badge>
         </ion-item>
         <ion-item>
-          <ion-label color="polo-light-green">Total Sale</ion-label>
+          <ion-label>Total Sale</ion-label>
           <ion-badge item-right color="dark-yellow">
             {{totalSaleInvestment() | currency:'USD':true:'1.2-2'}}
           </ion-badge>
         </ion-item>
         <ion-item>
-          <ion-label color="polo-light-green">Profit</ion-label>
+          <ion-label>Profit</ion-label>
           <ion-badge item-right color="dark-yellow">
             {{profitInvestment() | currency:'USD':true:'1.2-2'}}
           </ion-badge>
         </ion-item>
         <ion-item>
-          <ion-label color="polo-light-green">ROI Investment</ion-label>
+          <ion-label>ROI Investment</ion-label>
           <ion-badge item-right color="dark-yellow">
             {{roiInvestment() | number:'1.2-2'}}%
           </ion-badge>
@@ -84,7 +84,7 @@
     <div *ngSwitchCase="'mining'">
       <ion-list>
         <ion-list-header>
-          <p ion-text color="polo-light-green">Input Values</p>    
+          <p ion-text color="polo-base">Input Values</p>    
         </ion-list-header>
 
         <ion-item>
@@ -130,48 +130,48 @@
 
       <ion-list>
         <ion-list-header>
-          <p ion-text color="polo-light-green">Results</p>    
+          <p ion-text color="polo-base">Results</p>    
         </ion-list-header>
 
         <ion-item>
-          <ion-label color="polo-light-green">Total Investment</ion-label>
+          <ion-label>Total Investment</ion-label>
           <ion-badge item-right color="dark-red">{{totalCostOfInvestment() | currency:'USD':true:'1.2-2'}}</ion-badge>
         </ion-item>
 
         <ion-item>
-          <ion-label color="polo-light-green">Electricity Cost (mo)</ion-label>
+          <ion-label>Electricity Cost (mo)</ion-label>
           <ion-badge item-right color="dark-red">{{costOfElectricityMonthly() | currency:'USD':true:'1.2-2'}}</ion-badge>
         </ion-item>
         <ion-item>
-          <ion-label color="polo-light-green">Electricity Cost in {{monthsToMine}} Months</ion-label>
+          <ion-label>Electricity Cost in {{monthsToMine}} Months</ion-label>
           <ion-badge item-right color="dark-red">{{costOfElectricityInMonths() | currency:'USD':true:'1.2-2'}}</ion-badge>
         </ion-item>
         <ion-item>
-          <ion-label color="polo-light-green">Total Mined Currency</ion-label>
+          <ion-label>Total Mined Currency</ion-label>
           <ion-badge item-right color="dark-green">{{moneroGenerated() | number:'1.2-2'}}</ion-badge>
         </ion-item>
         <ion-item>
-          <ion-label color="polo-light-green">Total Sale</ion-label>
+          <ion-label>Total Sale</ion-label>
           <ion-badge item-right color="dark-green">{{totalSale() | currency:'USD':true:'1.2-2'}}</ion-badge>
         </ion-item>
         <ion-item>
-          <ion-label color="polo-light-green">Total Sale - Investment</ion-label>
+          <ion-label>Total Sale - Investment</ion-label>
           <ion-badge item-right color="{{totalSaleMinusInvestment() < 0 ? 'dark-red' : 'dark-green'}}">{{totalSaleMinusInvestment() | currency:'USD':true:'1.2-2'}}</ion-badge>
         </ion-item>
         <ion-item>
-          <ion-label color="polo-light-green">Total Profit (+ Rigs)</ion-label>
+          <ion-label>Total Profit (+ Rigs)</ion-label>
           <ion-badge item-right color="dark-green">{{totalProfit() | currency:'USD':true:'1.2-2'}}</ion-badge>
         </ion-item>
         <ion-item>
-          <ion-label color="polo-light-green">Total Profit (- Rigs)</ion-label>
+          <ion-label>Total Profit (- Rigs)</ion-label>
           <ion-badge item-right color="dark-green">{{profit() | currency:'USD':true:'1.2-2'}}</ion-badge>
         </ion-item>
         <ion-item>
-          <ion-label color="polo-light-green">ROI in {{monthsToMine}} months (+ Rigs)</ion-label>
+          <ion-label>ROI in {{monthsToMine}} months (+ Rigs)</ion-label>
           <ion-badge item-right color="dark-yellow">{{roi() | number:'1.2-2'}}%</ion-badge>
         </ion-item>
         <ion-item>
-          <ion-label color="polo-light-green">ROI in {{monthsToMine}} months (- Rigs)</ion-label>
+          <ion-label>ROI in {{monthsToMine}} months (- Rigs)</ion-label>
           <ion-badge item-right color="dark-yellow">{{roiWithoutRigInvestment() | number:'1.2-2'}}%</ion-badge>
         </ion-item>
         

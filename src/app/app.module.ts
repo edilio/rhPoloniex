@@ -12,6 +12,7 @@ import { TrollboxPage } from '../pages/trollbox/trollbox';
 import { InvestmentDetailPage } from '../pages/investment-detail/investment-detail';
 import { Polo } from '../providers/polo';
 import { PoloData } from '../providers/polo-data';
+import { CurrencySelectPage } from '../pages/currency-select/currency-select';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { PoloData } from '../providers/polo-data';
     Portfolio,
     Calculators,
     TrollboxPage,
-    InvestmentDetailPage
+    InvestmentDetailPage,
+    CurrencySelectPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -32,6 +34,7 @@ import { PoloData } from '../providers/polo-data';
     Calculators,
     TrollboxPage,
     InvestmentDetailPage,
+    CurrencySelectPage
   ],
   providers: [
     PoloData,

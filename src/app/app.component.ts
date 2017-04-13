@@ -5,7 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { Portfolio } from '../pages/portfolio/portfolio';
 import { Calculators } from '../pages/calculators/calculators';
-import { TrollboxPage } from '../pages/trollbox/trollbox';
+import { TrollboxPage } from '../pages/trollbox/trollbox'; 
 
 
 @Component({
