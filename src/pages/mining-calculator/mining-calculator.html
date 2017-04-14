@@ -1,0 +1,109 @@
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Mining Calculator</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+        <ion-list-header>
+          <p ion-text color="polo-base">Input Values</p>    
+        </ion-list-header>
+
+        <ion-item>
+          <ion-label color="dark-yellow"># Rigs(Miners)</ion-label>
+          <ion-input type="number" text-right  [(ngModel)]="noRigs"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label color="dark-yellow">Cost Investment/Rig</ion-label>
+          <ion-input type="number" text-right [(ngModel)]="costPerRig"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label color="dark-yellow">KH/s per Rig</ion-label>
+          <ion-input type="number" text-right [(ngModel)]="hashesRigs"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label color="dark-yellow">Currency per Rig/day</ion-label>
+          <ion-input type="number" text-right [(ngModel)]="xmrPerMiner"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label color="dark-yellow">Watts per Rig</ion-label>
+          <ion-input type="number" text-right [(ngModel)]="watts"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label color="dark-yellow">Cost per Watt</ion-label>
+          <ion-input type="number" text-right [(ngModel)]="costPerWatt"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label color="dark-yellow">Price to Sell</ion-label>
+          <ion-input type="number" text-right [(ngModel)]="priceToSell"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label color="dark-yellow">Months to Mine</ion-label>
+          <ion-input type="number" text-right [(ngModel)]="monthsToMine"></ion-input>
+        </ion-item>
+      </ion-list>
+
+      <ion-list>
+        <ion-list-header>
+          <p ion-text color="polo-base">Results</p>    
+        </ion-list-header>
+
+        <ion-item>
+          <ion-label>Total Investment</ion-label>
+          <ion-badge item-right color="dark-red">{{totalCostOfInvestment() | currency:'USD':true:'1.2-2'}}</ion-badge>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Electricity Cost (mo)</ion-label>
+          <ion-badge item-right color="dark-red">{{costOfElectricityMonthly() | currency:'USD':true:'1.2-2'}}</ion-badge>
+        </ion-item>
+        <ion-item>
+          <ion-label>Electricity Cost in {{monthsToMine}} Months</ion-label>
+          <ion-badge item-right color="dark-red">{{costOfElectricityInMonths() | currency:'USD':true:'1.2-2'}}</ion-badge>
+        </ion-item>
+        <ion-item>
+          <ion-label>Total Mined Currency</ion-label>
+          <ion-badge item-right color="dark-green">{{moneroGenerated() | number:'1.2-2'}}</ion-badge>
+        </ion-item>
+        <ion-item>
+          <ion-label>Total Sale</ion-label>
+          <ion-badge item-right color="dark-green">{{totalSale() | currency:'USD':true:'1.2-2'}}</ion-badge>
+        </ion-item>
+        <ion-item>
+          <ion-label>Total Sale - Investment</ion-label>
+          <ion-badge item-right color="{{totalSaleMinusInvestment() < 0 ? 'dark-red' : 'dark-green'}}">{{totalSaleMinusInvestment() | currency:'USD':true:'1.2-2'}}</ion-badge>
+        </ion-item>
+        <ion-item>
+          <ion-label>Total Profit (+ Rigs)</ion-label>
+          <ion-badge item-right color="dark-green">{{totalProfit() | currency:'USD':true:'1.2-2'}}</ion-badge>
+        </ion-item>
+        <ion-item>
+          <ion-label>Total Profit (- Rigs)</ion-label>
+          <ion-badge item-right color="dark-green">{{profit() | currency:'USD':true:'1.2-2'}}</ion-badge>
+        </ion-item>
+        <ion-item>
+          <ion-label>ROI in {{monthsToMine}} months (+ Rigs)</ion-label>
+          <ion-badge item-right color="dark-yellow">{{roi() | number:'1.2-2'}}%</ion-badge>
+        </ion-item>
+        <ion-item>
+          <ion-label>ROI in {{monthsToMine}} months (- Rigs)</ion-label>
+          <ion-badge item-right color="dark-yellow">{{roiWithoutRigInvestment() | number:'1.2-2'}}%</ion-badge>
+        </ion-item>
+        
+        </ion-list>
+
+</ion-content>
