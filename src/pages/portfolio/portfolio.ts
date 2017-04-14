@@ -19,8 +19,8 @@ export class Portfolio {
     public alertCtrl: AlertController) {}
 
 
-  itemTapped = function(event, slidingItem: ItemSliding, item) {
-    slidingItem.close();
+  itemTapped = function(event, item) {
+    //slidingItem.close();
     this.navCtrl.push(InvestmentDetailPage, {
         item: item
     });

@@ -41,17 +41,18 @@
     </ion-list-header>
     <ion-item-sliding *ngFor="let investment of data.portfolio" #slidingItem>
       
-      <ion-item>
+      <ion-item (click)="itemTapped($event, investment)">
         <b item-left>{{ investment.currency }}</b>
         <b item-right padding-right color="{{ investment.pctChange() >= 0 ? 'dark-green' : 'dark-red' }}">{{ investment.pctChange() | number:'1.2-2' }}%</b>
-      </ion-item>>
+        <!--<button ion-button icon-only item-right color="white-bg" (click)="itemTapped($event, investment)">
+          <ion-icon ion-text color="polo-base" name="information-circle"></ion-icon>
+        </button>-->
+      </ion-item>
 
       <ion-item-options side-right>
-        <button ion-button icon-only color="dark-green" (click)="itemTapped($event, slidingItem, investment)">
-          <ion-icon name="information-circle"></ion-icon>
-        </button>
-        <button ion-button color="dark-red" icon-only (click)="removeInvestment(slidingItem, investment)">
-          <ion-icon name="remove-circle"></ion-icon>
+        
+        <button ion-button color="white-bg" icon-only (click)="removeInvestment(slidingItem, investment)">
+          <ion-icon ion-text color="dark-red" name="remove-circle"></ion-icon>
         </button>
           
       </ion-item-options>
