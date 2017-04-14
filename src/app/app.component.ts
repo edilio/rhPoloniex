@@ -6,8 +6,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Portfolio } from '../pages/portfolio/portfolio';
 import { Calculators } from '../pages/calculators/calculators';
 import { TrollboxPage } from '../pages/trollbox/trollbox'; 
-import { PowerMonthlyPage } from '../pages/power-monthly/power-monthly';
-
 
 @Component({
   templateUrl: 'app.html'
@@ -15,7 +13,7 @@ import { PowerMonthlyPage } from '../pages/power-monthly/power-monthly';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = PowerMonthlyPage;
+  rootPage: any = Portfolio;
 
   pages: Array<{title: string, component: any, icon: string}>;
 
