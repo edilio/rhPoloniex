@@ -13,6 +13,11 @@ import { InvestmentDetailPage } from '../pages/investment-detail/investment-deta
 import { Polo } from '../providers/polo';
 import { PoloData } from '../providers/polo-data';
 import { PowerMonthlyPage } from '../pages/power-monthly/power-monthly';
+import { RigsNeededPage } from '../pages/rigs-needed/rigs-needed';
+import { RigsPerRoomPage } from '../pages/rigs-per-room/rigs-per-room';
+import { InvestmentCalculatorPage } from '../pages/investment-calculator/investment-calculator';
+import { MiningCalculatorPage } from '../pages/mining-calculator/mining-calculator';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +26,11 @@ import { PowerMonthlyPage } from '../pages/power-monthly/power-monthly';
     Calculators,
     TrollboxPage,
     InvestmentDetailPage,
-    PowerMonthlyPage
+    PowerMonthlyPage,
+    RigsNeededPage,
+    RigsPerRoomPage,
+    InvestmentCalculatorPage,
+    MiningCalculatorPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -34,7 +43,11 @@ import { PowerMonthlyPage } from '../pages/power-monthly/power-monthly';
     Calculators,
     TrollboxPage,
     InvestmentDetailPage,
-    PowerMonthlyPage
+    PowerMonthlyPage,
+    RigsNeededPage,
+    RigsPerRoomPage,
+    InvestmentCalculatorPage,
+    MiningCalculatorPage
   ],
   providers: [
     PoloData,
