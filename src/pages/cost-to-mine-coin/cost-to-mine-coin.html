@@ -1,0 +1,57 @@
+<!--
+  Generated template for the CostToMineCoin page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle left>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Cost To Mine 1 Coin</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+      <ion-list-header>
+        <p ion-text color="polo-base">Input Values</p>    
+      </ion-list-header>
+
+      <ion-item>
+        <ion-label color="dark-yellow">Generate 1 coin in(h)</ion-label>
+        <ion-input type="number" text-right  [(ngModel)]="hours"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="dark-yellow"># Rigs(Miners)</ion-label>
+        <ion-input type="number" text-right  [(ngModel)]="noRigs"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="dark-yellow">Power in Watts/Rig</ion-label>
+        <ion-input type="number" text-right [(ngModel)]="wattsPerRig"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="dark-yellow">Cost KW/h</ion-label>
+        <ion-input type="number" text-right [(ngModel)]="costKW"></ion-input>
+      </ion-item>
+      
+      <ion-list-header>
+        <p ion-text color="polo-base">Results</p>    
+      </ion-list-header>
+
+
+      <ion-item> 
+        <ion-label>Cost of Mining in ({{hours}})h</ion-label>     
+        <ion-badge item-right color="dark-yellow">
+          {{costOfMining() | number: '1.2-2'}}
+        </ion-badge>
+      </ion-item>
+  </ion-list>
+</ion-content>
