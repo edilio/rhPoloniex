@@ -29,7 +29,7 @@ export class TrollboxPage {
         alert.addInput(
           {
             type: 'radio',
-            label: x,
+            label: x.toUpperCase(),
             value: x,
             checked: this.selectedFilter == x
           }
