@@ -1,0 +1,102 @@
+<!--
+  Generated template for the PowerMonthly page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle left>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Power Monthly</ion-title>
+  </ion-navbar>
+  
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+      <ion-list-header>
+        <p ion-text color="polo-base">Input Values</p>    
+      </ion-list-header>
+
+      <ion-item>
+        <ion-label color="dark-yellow"># Rigs(Miners)</ion-label>
+        <ion-input type="number" text-right  [(ngModel)]="noRigs"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="dark-yellow">Power in Watts/Rig</ion-label>
+        <ion-input type="number" text-right [(ngModel)]="wattsPerRig"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="dark-yellow">Cost KW/h</ion-label>
+        <ion-input type="number" text-right [(ngModel)]="costKW"></ion-input>
+      </ion-item>
+      
+      <ion-list-header>
+        <p ion-text color="polo-base">Results</p>    
+      </ion-list-header>
+
+
+      <ion-item> 
+        <ion-label>Daily KW/Rig</ion-label>     
+        <ion-badge item-right color="dark-yellow">
+          {{kwDailyPerRig() | number: '1.2-2'}}
+        </ion-badge>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Total Daily KWs</ion-label>
+        <ion-badge item-right color="dark-yellow">
+          {{totalDailyKW() | number: '1.2-2'}}
+        </ion-badge>
+      </ion-item>
+
+      <ion-item> 
+        <ion-label>Daily USD/Rig</ion-label>     
+        <ion-badge item-right color="dark-yellow">
+          ${{usdDailyPerRig() | number: '1.2-2'}}
+        </ion-badge>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Total Daily USD</ion-label>
+        <ion-badge item-right color="dark-yellow">
+          ${{totalDailyUSD() | number: '1.2-2'}}
+        </ion-badge>
+      </ion-item>
+<!--monthly-->
+      <ion-item>
+        <ion-label>Monthly KW/Rig</ion-label>
+        <ion-badge item-right color="dark-yellow">
+          {{monthlyKWperRig() | number: '1.2-2'}}
+        </ion-badge>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Monthly USD/Rig</ion-label>
+        <ion-badge item-right color="dark-yellow">
+          ${{monthlyUSDperRig() | number: '1.2-2'}}
+        </ion-badge>
+      </ion-item>
+      <ion-item>
+        <ion-label>Total Monthly KW</ion-label>
+        <ion-badge item-right color="dark-yellow">
+          {{total30DaysKW() | number: '1.2-2'}}
+        </ion-badge>
+      </ion-item>
+      <ion-item>
+        <ion-label>Total Monthly USD</ion-label>
+        <ion-badge item-right color="dark-yellow">
+          ${{total30DaysUSD() | number: '1.2-2'}}
+        </ion-badge>
+      </ion-item>
+
+  </ion-list>
+  
+
+</ion-content>
