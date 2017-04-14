@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController } from 'ionic-angular';
+import { NavController, ItemSliding, AlertController } from 'ionic-angular';
 
 import { InvestmentDetailPage } from '../investment-detail/investment-detail';
 import { Investment, PoloData } from '../../providers/polo-data';
@@ -15,16 +15,19 @@ export class Portfolio {
   
   constructor(
     public navCtrl: NavController, 
-    public data: PoloData) {}
+    public data: PoloData,
+    public alertCtrl: AlertController) {}
 
 
-  itemTapped = function(event, item) {
+  itemTapped = function(event, slidingItem: ItemSliding, item) {
+    slidingItem.close();
     this.navCtrl.push(InvestmentDetailPage, {
         item: item
     });
   }
 
-  removeInvestment(investment) {
+  removeInvestment0(investment) {
+    
     this.data.portfolio = this.data.portfolio.filter(item => item.currency !== investment.currency);
     this.data.saveToStorage('my-potfolio', this.data.portfolio);
   }
@@ -35,6 +38,30 @@ export class Portfolio {
     this.navCtrl.push(InvestmentDetailPage, {
         item: item
     });
+  }
+
+  removeInvestment(slidingItem: ItemSliding, investment) {
+    let confirm = this.alertCtrl.create({
+      title: 'Remove item from Portfolio?',
+      message: 'This action will remove selected item from the list',
+      buttons: [
+        {
+          text: 'Disagree',
+          handler: () => {
+            slidingItem.close();
+          }
+        },
+        {
+          text: 'Agree',
+          handler: () => {
+            slidingItem.close();
+            this.data.portfolio = this.data.portfolio.filter(item => item.currency !== investment.currency);
+            this.data.saveToStorage('my-potfolio', this.data.portfolio);
+          }
+        }
+      ]
+    });
+    confirm.present();
   }
 
 }
