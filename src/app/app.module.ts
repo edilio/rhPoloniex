@@ -14,7 +14,7 @@ import { Polo } from '../providers/polo';
 import { PoloData } from '../providers/polo-data';
 import { PowerMonthlyPage } from '../pages/power-monthly/power-monthly';
 import { RigsNeededPage } from '../pages/rigs-needed/rigs-needed';
-import { RigsPerRoomPage } from '../pages/rigs-per-room/rigs-per-room';
+import { CostToMineCoinPage } from '../pages/cost-to-mine-coin/cost-to-mine-coin';
 import { InvestmentCalculatorPage } from '../pages/investment-calculator/investment-calculator';
 import { MiningCalculatorPage } from '../pages/mining-calculator/mining-calculator';
 
@@ -28,7 +28,7 @@ import { MiningCalculatorPage } from '../pages/mining-calculator/mining-calculat
     InvestmentDetailPage,
     PowerMonthlyPage,
     RigsNeededPage,
-    RigsPerRoomPage,
+    CostToMineCoinPage,
     InvestmentCalculatorPage,
     MiningCalculatorPage
   ],
@@ -45,7 +45,7 @@ import { MiningCalculatorPage } from '../pages/mining-calculator/mining-calculat
     InvestmentDetailPage,
     PowerMonthlyPage,
     RigsNeededPage,
-    RigsPerRoomPage,
+    CostToMineCoinPage,
     InvestmentCalculatorPage,
     MiningCalculatorPage
   ],
