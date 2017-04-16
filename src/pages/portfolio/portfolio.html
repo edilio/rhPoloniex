@@ -38,7 +38,7 @@
       
       <ion-item (click)="itemTapped($event, investment)">
         <h3><b>{{ investment.currency }}</b></h3>
-        <small ion-text color="polo-base">qty: {{ investment.balance | number:'1.2-2' }} | cost: {{ investment.avgCost }}</small>
+        <small ion-text text-nowrap color="polo-base">{{ investment.balance | number:'1.2-2' }} coins</small>
         
         <button ion-button icon-only item-right style="width:80px" color="{{ investment.pctChange() >= 0 ? 'dark-green' : 'dark-red' }}" >
           {{ investment.pctChange() | number:'1.2-2' }}%
