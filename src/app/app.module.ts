@@ -17,6 +17,7 @@ import { RigsNeededPage } from '../pages/rigs-needed/rigs-needed';
 import { CostToMineCoinPage } from '../pages/cost-to-mine-coin/cost-to-mine-coin';
 import { InvestmentCalculatorPage } from '../pages/investment-calculator/investment-calculator';
 import { MiningCalculatorPage } from '../pages/mining-calculator/mining-calculator';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { MiningCalculatorPage } from '../pages/mining-calculator/mining-calculat
     Polo,
     StatusBar,
     SplashScreen,
+    InAppBrowser,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
