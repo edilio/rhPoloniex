@@ -13,17 +13,17 @@
   <ion-list>
     <ion-list-header>
       <p ion-text color="polo-base">Portfolio</p> 
-      <span item-right color="polo-base"><b>(<ion-icon name='logo-bitcoin'></ion-icon>1 = <ion-icon name='logo-usd'></ion-icon>{{ data.price1btc | number:'1.2-2' }})</b></span> 
+      <!--<span item-right color="polo-base"><b>(<ion-icon name='logo-bitcoin'></ion-icon>1 = <ion-icon name='logo-usd'></ion-icon>{{ data.price1btc | number:'1.2-2' }})</b></span> -->
     </ion-list-header>
     <ion-item>
       <ion-icon name='logo-bitcoin' item-left></ion-icon>
-      {{ data.totalBalanceInBTC() | number:'1.2-2'}}
-      <ion-note item-right>bitcoins</ion-note>
+        {{ data.totalBalanceInBTC() | number:'1.2-2'}}
+        <ion-note item-right><p>1 = ${{ data.price1btc | number:'1.2-2' }}</p></ion-note>
     </ion-item> 
     <ion-item>
       <ion-icon name='logo-usd' item-left></ion-icon>
       {{ data.totalBalanceInUSD() | number:'1.2-2' }}
-      <ion-note item-right>dollars</ion-note>
+      <ion-note item-right><p>value in dollars</p></ion-note>
     </ion-item> 
   </ion-list>
 
