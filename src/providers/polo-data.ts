@@ -70,6 +70,8 @@ export class PoloData {
   keywordsPerTab: any;
   msgs: any;
   selectedFilter: string;
+
+  currencies: Array<any> = [];
   
   constructor(public http: Http, public polo: Polo, public storage: Storage){ 
 
@@ -78,6 +80,7 @@ export class PoloData {
     });
 
     this.initValues();
+    //this.getCurrencies();
   }
 
   initValues(){
@@ -293,9 +296,19 @@ export class PoloData {
     investment._24hrHigh = args[8];
     investment._24hrLow = args[9];
   }
-  
+
+  getCurrencies(){
+    this.polo.returnCurrencies().subscribe(data => {
+      for (let key in data ){
+          let obj = {symbol: key, name: data[key]['name']}
+          this.currencies.push(obj);
+      }
+    })
+  }
+
   updatePorfolioPrices() {
     let tickers = this.polo.returnTicker();
+
     setTimeout(() => {
       tickers.forEach(obj => {
           for (let pair in obj) {
@@ -309,7 +322,7 @@ export class PoloData {
             }
           }
           
-        })
+        });
     }, 1000);
     
   }

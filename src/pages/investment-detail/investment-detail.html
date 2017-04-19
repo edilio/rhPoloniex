@@ -43,28 +43,28 @@
     <ion-item> 
       <ion-label>Total Balance</ion-label>     
       <ion-badge item-right color="dark-yellow">
-        {{investment.totalBalance()| number: '1.6-6'}}
+        {{investment.totalBalance() | number: '1.6-6'}}
       </ion-badge>
     </ion-item>
 
     <ion-item>
       <ion-label>Actual Price</ion-label>
       <ion-badge item-right color="dark-yellow">
-        {{investment.actualPrice| number: '1.6-6'}}
+        {{investment.actualPrice | number: '1.6-6'}}
       </ion-badge>
     </ion-item>
 
     <ion-item>
       <ion-label>% Change</ion-label>
-      <ion-badge item-right color="{{investment.pctChange() >= 0 ? 'dark-green' : 'dark-red'}}">
-        {{ investment.pctChange() | number:'1.2-2' }} %
+      <ion-badge item-right color="{{ investment.pctChange() >= 0 ? 'dark-green' : 'dark-red'}}">
+        {{ investment.pctChange() || 0 | number:'1.2-2' }} %
       </ion-badge>
     </ion-item>
 
     <ion-item>
       <ion-label>24h % Change</ion-label>
       <ion-badge item-right color="{{investment.percentChange >= 0 ? 'dark-green' : 'dark-red'}}">
-        {{ investment.percentChange | number:'1.2-2' }} %
+        {{ investment.percentChange || 0 | number:'1.2-2' }} %
       </ion-badge>
     </ion-item>
     

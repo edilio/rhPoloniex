@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController, ItemSliding, AlertController } from 'ionic-angular';
+import { NavController, ItemSliding, AlertController, reorderArray } from 'ionic-angular';
 
 import { InvestmentDetailPage } from '../investment-detail/investment-detail';
 import { Investment, PoloData } from '../../providers/polo-data';
@@ -12,6 +12,7 @@ import { Investment, PoloData } from '../../providers/polo-data';
 })
 export class Portfolio {
   watchList: Investment[];
+  reorderList: boolean = false;
   
   constructor(
     public navCtrl: NavController, 
@@ -20,14 +21,15 @@ export class Portfolio {
 
 
   itemTapped = function(event, item) {
-    //slidingItem.close();
-    this.navCtrl.push(InvestmentDetailPage, {
-        item: item
-    });
+    this.navCtrl.push(InvestmentDetailPage, {item: item});
+  }
+
+  reorderItems(indexes){
+    this.data.portfolio = reorderArray(this.data.portfolio, indexes);
+    this.data.saveToStorage('my-potfolio', this.data.portfolio);
   }
 
   removeInvestment0(investment) {
-    
     this.data.portfolio = this.data.portfolio.filter(item => item.currency !== investment.currency);
     this.data.saveToStorage('my-potfolio', this.data.portfolio);
   }
