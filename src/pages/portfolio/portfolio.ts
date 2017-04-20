@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { NavController, ItemSliding, AlertController, reorderArray } from 'ionic-angular';
 
 import { InvestmentDetailPage } from '../investment-detail/investment-detail';
+import { SearchCurrencyPage } from '../search-currency/search-currency';
 import { Investment, PoloData } from '../../providers/polo-data';
 
 
@@ -29,11 +30,6 @@ export class Portfolio {
     this.data.saveToStorage('my-potfolio', this.data.portfolio);
   }
 
-  removeInvestment0(investment) {
-    this.data.portfolio = this.data.portfolio.filter(item => item.currency !== investment.currency);
-    this.data.saveToStorage('my-potfolio', this.data.portfolio);
-  }
-
   addInvestment() {
     let item = new Investment('NEW', 0, 0, 0, 0);
     this.data.portfolio.push(item);
@@ -48,13 +44,13 @@ export class Portfolio {
       message: 'This action will remove selected item from the list',
       buttons: [
         {
-          text: 'Disagree',
+          text: 'Cancel',
           handler: () => {
             slidingItem.close();
           }
         },
         {
-          text: 'Agree',
+          text: 'Delete',
           handler: () => {
             slidingItem.close();
             this.data.portfolio = this.data.portfolio.filter(item => item.currency !== investment.currency);
@@ -64,6 +60,10 @@ export class Portfolio {
       ]
     });
     confirm.present();
+  }
+
+  searchCurrency() {
+    this.navCtrl.push(SearchCurrencyPage);
   }
 
 }
