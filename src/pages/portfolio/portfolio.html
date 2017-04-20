@@ -27,17 +27,17 @@
     <p ion-text color="light-gray" style="margin-top:-8px">1 BTC = ${{ data.price1btc || 0 | number:'1.2-2' }}</p>
   </div>
   <br>
+
   
   <ion-list>
+
     <ion-list-header>
       <p ion-text color="polo-base">Portfolio</p> 
-      <!--<button ion-button icon-only (click)="addInvestment()" item-right color="white-bg">
-        <ion-icon ion-text color="polo-base" name="add-circle"></ion-icon>
-      </button>-->
       <button ion-button icon-only item-right color="white-bg" (click)="reorderList = !reorderList" margin-right>
         <ion-icon ion-text color="polo-base" name="reorder"></ion-icon>
       </button>
     </ion-list-header>
+
     <ion-item-group reorder="{{ reorderList }}" (ionItemReorder)="reorderItems($event)">
       <ion-item-sliding *ngFor="let investment of data.portfolio; let i = index" #slidingItem>
         
@@ -57,6 +57,8 @@
         </ion-item-options>
       </ion-item-sliding>
     </ion-item-group>
+
   </ion-list>
+
     
 </ion-content>

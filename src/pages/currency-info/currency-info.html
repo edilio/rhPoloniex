@@ -3,8 +3,8 @@
   <ion-navbar hideBackButton="true">
 
     <ion-buttons start>
-      <button ion-button icon-only (click)="onCancel()" margin-left>
-        <ion-icon name="close"></ion-icon>
+      <button ion-button icon-only (click)="cancelView()" margin-left>
+        <ion-icon name="backspace-outline"></ion-icon>
       </button>
     </ion-buttons>
 
@@ -27,13 +27,8 @@
       <span ion-text color="polo-base" style="font-size:0.5em"><ion-icon name='logo-bitcoin'></ion-icon> </span>
        <b ion-text color="polo-base">{{ localInvestment.last | number: '1.8-8' }}</b>
     </h1>
-    <!--<h4 ion-text color="dark-yellow" style="margin-top:-20px">
-      <span style="font-size:0.5em"><ion-icon name='logo-usd'></ion-icon> </span>
-       {{ data.totalBalanceInUSD() || 0 | number:'1.2-2' }}
-    </h4>-->
     <p ion-text color="light-gray" style="margin-top:-8px">Volume: {{ localInvestment.quoteVolume }}</p>
   </div>
-  <!--<br>-->
 
   <ion-list>
 

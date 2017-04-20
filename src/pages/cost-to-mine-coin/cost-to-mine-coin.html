@@ -48,10 +48,10 @@
 
 
       <ion-item> 
-        <ion-label>Cost of Mining in ({{hours}})h</ion-label>     
-        <ion-badge item-right color="dark-yellow">
+        <ion-label>Cost of Mining in ({{hours}})h</ion-label> 
+        <button ion-button item-right strong style="width:120px" color="dark-yellow">
           {{costOfMining() | number: '1.2-2'}}
-        </ion-badge>
+        </button>    
       </ion-item>
   </ion-list>
 </ion-content>

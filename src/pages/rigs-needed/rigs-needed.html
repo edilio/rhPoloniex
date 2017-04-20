@@ -44,9 +44,9 @@
 
         <ion-item> 
           <ion-label># Rigs(Miners)</ion-label>     
-          <ion-badge item-right color="dark-yellow">
+          <button ion-button item-right strong style="width:120px" color="dark-yellow">
             {{noRigs() | number: '1.2-2'}}
-          </ion-badge>
+          </button>
         </ion-item>
 
       </ion-list>
@@ -76,16 +76,16 @@
 
         <ion-item> 
           <ion-label># Rigs(Miners) if 110 V</ion-label>     
-          <ion-badge item-right color="dark-yellow">
+          <button ion-button item-right strong style="width:120px" color="dark-yellow">
             {{rigs110() | number: '1.1-1'}}
-          </ion-badge>
+          </button>
         </ion-item>
 
         <ion-item> 
           <ion-label># Rigs(Miners) if 220 V</ion-label>     
-          <ion-badge item-right color="dark-yellow">
+          <button ion-button item-right strong style="width:120px" color="dark-yellow">
             {{rigs220() | number: '1.1-1'}}
-          </ion-badge>
+          </button>
         </ion-item>
       </ion-list>
     </div>

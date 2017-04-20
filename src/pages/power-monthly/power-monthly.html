@@ -44,56 +44,56 @@
 
       <ion-item> 
         <ion-label>Daily KW/Rig</ion-label>     
-        <ion-badge item-right color="dark-yellow">
+        <button ion-button item-right strong style="width:120px" color="dark-yellow">
           {{kwDailyPerRig() | number: '1.2-2'}}
-        </ion-badge>
+        </button>
       </ion-item>
 
       <ion-item>
         <ion-label>Total Daily KWs</ion-label>
-        <ion-badge item-right color="dark-yellow">
+        <button ion-button item-right strong style="width:120px" color="dark-yellow">
           {{totalDailyKW() | number: '1.2-2'}}
-        </ion-badge>
+        </button>
       </ion-item>
 
       <ion-item> 
         <ion-label>Daily USD/Rig</ion-label>     
-        <ion-badge item-right color="dark-yellow">
+        <button ion-button item-right strong style="width:120px" color="dark-yellow">
           ${{usdDailyPerRig() | number: '1.2-2'}}
-        </ion-badge>
+        </button>
       </ion-item>
 
       <ion-item>
         <ion-label>Total Daily USD</ion-label>
-        <ion-badge item-right color="dark-yellow">
+        <button ion-button item-right strong style="width:120px" color="dark-yellow">
           ${{totalDailyUSD() | number: '1.2-2'}}
-        </ion-badge>
+        </button>
       </ion-item>
 <!--monthly-->
       <ion-item>
         <ion-label>Monthly KW/Rig</ion-label>
-        <ion-badge item-right color="dark-yellow">
+        <button ion-button item-right strong style="width:120px" color="dark-yellow">
           {{monthlyKWperRig() | number: '1.2-2'}}
-        </ion-badge>
+        </button>
       </ion-item>
 
       <ion-item>
         <ion-label>Monthly USD/Rig</ion-label>
-        <ion-badge item-right color="dark-yellow">
+        <button ion-button item-right strong style="width:120px" color="dark-yellow">
           ${{monthlyUSDperRig() | number: '1.2-2'}}
-        </ion-badge>
+        </button>
       </ion-item>
       <ion-item>
         <ion-label>Total Monthly KW</ion-label>
-        <ion-badge item-right color="dark-yellow">
+        <button ion-button item-right strong style="width:120px" color="dark-yellow">
           {{total30DaysKW() | number: '1.2-2'}}
-        </ion-badge>
+        </button>
       </ion-item>
       <ion-item>
         <ion-label>Total Monthly USD</ion-label>
-        <ion-badge item-right color="dark-yellow">
+        <button ion-button item-right strong style="width:120px" color="dark-yellow">
           ${{total30DaysUSD() | number: '1.2-2'}}
-        </ion-badge>
+        </button>
       </ion-item>
 
   </ion-list>

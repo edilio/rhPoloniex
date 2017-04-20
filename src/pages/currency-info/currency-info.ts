@@ -26,23 +26,23 @@ export class CurrencyInfoPage {
   }
 
   ionViewDidLoad() {
-    //this.localInvestment = this.cc.selected ? this.data.portfolio.filter(x => x.currency == this.cc.symbol)[0] : new Investment(this.cc.symbol, 0, 0, 0, 0);
-    this.localInvestment = new Investment(this.cc.symbol, 0, 0, 0, 0);
-    
     this.updateCurrencyInfo();
-    console.log(this.localInvestment);
   }
 
-  onCancel(){
+  cancelView(){
     this.navCtrl.pop();
   }
 
   addCurrency(){
-    this.data.portfolio.push(this.localInvestment); 
+    let newInvestment = new Investment(this.cc.symbol, 0, 0, 0, 0);
+    this.data.portfolio.push(newInvestment); 
     this.cc.selected = true;
+    this.cancelView();
   }
 
   updateCurrencyInfo(){
+    this.localInvestment = new Investment(this.cc.symbol, 0, 0, 0, 0);
+
     let loading = this.loadingCtrl.create({
         content: `loading ${this.cc.symbol} info ...`,
         dismissOnPageChange: true
@@ -62,10 +62,9 @@ export class CurrencyInfoPage {
           }
 
           loading.dismiss();
-
       })
 
-    }
+    } else this.cancelView();
   }
 
 }
