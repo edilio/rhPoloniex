@@ -1,0 +1,30 @@
+<ion-header>
+
+  <ion-navbar hideBackButton="true">
+    <ion-buttons start>
+      <button ion-button icon-only (click)="onCancel()" margin-left>
+        <ion-icon name="close"></ion-icon>
+      </button> 
+    </ion-buttons>
+    <ion-searchbar (ionInput)="getItems($event)" placeholder="Search for currency"></ion-searchbar>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  
+  <ion-list inset>
+    <ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
+     
+      <h3><b>{{ item.symbol }}</b></h3>
+      <small ion-text text-nowrap color="polo-base">{{ item.name }}</small>
+      
+      <button ion-button strong icon-only item-right color="white-bg" (click)="addCurrency($event, item)">
+        <ion-icon ion-text color="dark-green" name="{{ item.selected ? 'checkmark-circle' : 'add-circle-outline' }}"></ion-icon>
+      </button>
+      
+    </ion-item>
+  </ion-list>
+
+</ion-content>

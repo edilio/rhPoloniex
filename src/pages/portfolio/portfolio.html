@@ -4,6 +4,11 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Dashboard</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only margin-right (click)="searchCurrency()">
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-buttons>
 
   </ion-navbar>
 </ion-header>
@@ -17,18 +22,18 @@
     </h1>
     <h4 ion-text color="dark-yellow" style="margin-top:-20px">
       <span style="font-size:0.5em"><ion-icon name='logo-usd'></ion-icon> </span>
-       {{ data.totalBalanceInUSD() | number:'1.2-2' }}
+       {{ data.totalBalanceInUSD() || 0 | number:'1.2-2' }}
     </h4>
-    <p ion-text color="light-gray" style="margin-top:-8px">1 BTC = ${{ data.price1btc | number:'1.2-2' }}</p>
+    <p ion-text color="light-gray" style="margin-top:-8px">1 BTC = ${{ data.price1btc || 0 | number:'1.2-2' }}</p>
   </div>
   <br>
   
   <ion-list>
     <ion-list-header>
       <p ion-text color="polo-base">Portfolio</p> 
-      <button ion-button icon-only (click)="addInvestment()" item-right color="white-bg">
+      <!--<button ion-button icon-only (click)="addInvestment()" item-right color="white-bg">
         <ion-icon ion-text color="polo-base" name="add-circle"></ion-icon>
-      </button>
+      </button>-->
       <button ion-button icon-only item-right color="white-bg" (click)="reorderList = !reorderList" margin-right>
         <ion-icon ion-text color="polo-base" name="reorder"></ion-icon>
       </button>
@@ -38,10 +43,10 @@
         
         <ion-item (click)="itemTapped($event, investment)">
           <h3><b>{{ investment.currency }}</b></h3>
-          <small ion-text text-nowrap color="polo-base">{{ investment.balance | number:'1.2-2' }} coins</small>
+          <small ion-text text-nowrap color="polo-base">{{ investment.balance || 0 | number:'1.2-2' }} coins</small>
           
-          <button ion-button icon-only item-right style="width:80px" color="{{ investment.pctChange() >= 0 ? 'dark-green' : 'dark-red' }}" >
-            {{ investment.pctChange() | number:'1.2-2' }}%
+          <button ion-button strong item-right style="width:80px" color="{{ investment.pctChange() >= 0 ? 'dark-green' : 'dark-red' }}">
+            {{ investment.pctChange() || 0 | number:'1.2-2' }}%
           </button>
         </ion-item>
 

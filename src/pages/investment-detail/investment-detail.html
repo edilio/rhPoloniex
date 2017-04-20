@@ -1,6 +1,10 @@
 <ion-header>
-
-  <ion-navbar>
+  <ion-navbar hideBackButton="true">
+     <ion-buttons start>
+      <button ion-button icon-only (click)="onCancel()" margin-left>
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>{{investment.currency}}</ion-title>
   </ion-navbar>
 
@@ -12,7 +16,6 @@
     <ion-list-header>
       <p ion-text color="polo-base">Input Values</p>    
     </ion-list-header>
-
 
     <ion-item *ngIf="investment.isNew"> 
       <ion-label>Currency Symbol</ion-label>
@@ -30,63 +33,61 @@
       </ion-item>
 
     <ion-item>
-       <ion-label>Avg Cost</ion-label>
+       <ion-label>Avg Cost (BTC)</ion-label>
        <ion-input type="number" text-right placeholder="Avg Cost" [(ngModel)]="investment.avgCost"></ion-input>
     </ion-item>
 
-    <!--<ion-item-divider color="polo-base">Results</ion-item-divider>-->
     <ion-list-header>
       <p ion-text color="polo-base">Results</p>    
     </ion-list-header>
 
-
     <ion-item> 
       <ion-label>Total Balance</ion-label>     
-      <ion-badge item-right color="dark-yellow">
-        {{investment.totalBalance() | number: '1.6-6'}}
-      </ion-badge>
+      <button ion-button item-right strong style="width:120px" color="dark-yellow">
+        {{investment.totalBalance() || 0 | number: '1.6-6' }}
+      </button>
     </ion-item>
 
     <ion-item>
-      <ion-label>Actual Price</ion-label>
-      <ion-badge item-right color="dark-yellow">
-        {{investment.actualPrice | number: '1.6-6'}}
-      </ion-badge>
+      <ion-label>Actual Price (BTC)</ion-label>
+      <button ion-button item-right strong style="width:120px" color="dark-yellow">
+        {{investment.actualPrice || 0 | number: '1.6-6' }}
+      </button>
     </ion-item>
 
     <ion-item>
       <ion-label>% Change</ion-label>
-      <ion-badge item-right color="{{ investment.pctChange() >= 0 ? 'dark-green' : 'dark-red'}}">
+      <button ion-button item-right strong style="width:120px" color="{{ investment.pctChange() >= 0 ? 'dark-green' : 'dark-red'}}">
         {{ investment.pctChange() || 0 | number:'1.2-2' }} %
-      </ion-badge>
+      </button>
     </ion-item>
 
     <ion-item>
       <ion-label>24h % Change</ion-label>
-      <ion-badge item-right color="{{investment.percentChange >= 0 ? 'dark-green' : 'dark-red'}}">
+      <button ion-button item-right strong style="width:120px" color="{{investment.percentChange >= 0 ? 'dark-green' : 'dark-red'}}">
         {{ investment.percentChange || 0 | number:'1.2-2' }} %
-      </ion-badge>
+      </button>
     </ion-item>
     
     <ion-item>
       <ion-label>% Of Investment</ion-label> 
-      <ion-badge item-right color="dark-yellow">
-        {{investment.pctOfInvestment| number: '1.2-2'}} %
-      </ion-badge>
+      <button ion-button item-right strong style="width:120px" color="dark-yellow">
+        {{investment.pctOfInvestment || 0 | number: '1.2-2' }} %
+      </button>
     </ion-item>
 
     <ion-item>
       <ion-label>BTC Value</ion-label>
-      <ion-badge item-right color="dark-yellow">
-        {{investment.btcValue()| number: '1.6-6'}}
-      </ion-badge>
+      <button ion-button item-right strong style="width:120px" color="dark-yellow">
+        {{investment.btcValue() || 0 | number: '1.6-6' }}
+      </button>
     </ion-item>
 
     <ion-item>
       <ion-label>USDT Value</ion-label>
-      <ion-badge item-right color="dark-yellow">
-        {{investment.usdValue()| number: '1.2-2'}}
-      </ion-badge>
+      <button ion-button item-right strong style="width:120px" color="dark-yellow">
+        {{investment.usdValue() || 0 | number: '1.2-2' }}
+      </button>
       </ion-item>
   </ion-list>  
 
