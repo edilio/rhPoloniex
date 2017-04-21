@@ -15,7 +15,8 @@ export class CurrencyInfoPage {
   cc: any;
   selected: any;
   localInvestment: Investment;
-  inUsd: boolean = false;
+  isBTC: boolean = false;
+  isUSDT: boolean = false;
 
   constructor(
     public navCtrl: NavController, 
@@ -45,7 +46,8 @@ export class CurrencyInfoPage {
     let currencySymbol = this.cc.symbol;
 
     this.localInvestment = new Investment(currencySymbol, 0, 0, 0, 0);
-    this.inUsd = currencySymbol === 'BTC';
+    this.isBTC = currencySymbol === 'BTC';
+    this.isUSDT = currencySymbol === 'USDT';
     
     let loading = this.loadingCtrl.create({
         content: `loading ${this.cc.symbol} info ...`,
@@ -54,16 +56,17 @@ export class CurrencyInfoPage {
 
     loading.present();
 
-    let pairSymbol = this.inUsd ? `USDT_BTC` : `BTC_${currencySymbol}`;
+    let pairSymbol = this.isBTC || this.isUSDT ? `USDT_BTC` : `BTC_${currencySymbol}`;
 
     this.polo.returnTicker().subscribe(data => {
       let obj = data[pairSymbol];
 
         for (let key in obj){
-          this.localInvestment[key] = obj[key];
+          let value = parseFloat(obj[key]);
+          this.localInvestment[key] = this.isUSDT ? 1/value : value;
         }
 
-        loading.dismiss();
+        loading.dismiss().catch(() => {});
     })
 
   }
