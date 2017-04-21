@@ -15,6 +15,7 @@ export class CurrencyInfoPage {
   cc: any;
   selected: any;
   localInvestment: Investment;
+  inUsd: boolean = false;
 
   constructor(
     public navCtrl: NavController, 
@@ -41,30 +42,30 @@ export class CurrencyInfoPage {
   }
 
   updateCurrencyInfo(){
-    this.localInvestment = new Investment(this.cc.symbol, 0, 0, 0, 0);
+    let currencySymbol = this.cc.symbol;
 
+    this.localInvestment = new Investment(currencySymbol, 0, 0, 0, 0);
+    this.inUsd = currencySymbol === 'BTC';
+    
     let loading = this.loadingCtrl.create({
         content: `loading ${this.cc.symbol} info ...`,
         dismissOnPageChange: true
       });
 
-      loading.present();
+    loading.present();
 
-    let currencySymbol = this.cc.symbol;
+    let pairSymbol = this.inUsd ? `USDT_BTC` : `BTC_${currencySymbol}`;
 
-    if (currencySymbol !== 'BTC'){
-      this.polo.returnTicker().subscribe(data => {
-        let pairSymbol = `BTC_${currencySymbol}`,
-          obj = data[pairSymbol];
+    this.polo.returnTicker().subscribe(data => {
+      let obj = data[pairSymbol];
 
-          for (let key in obj){
-            this.localInvestment[key] = obj[key];
-          }
+        for (let key in obj){
+          this.localInvestment[key] = obj[key];
+        }
 
-          loading.dismiss();
-      })
+        loading.dismiss();
+    })
 
-    } else this.cancelView();
   }
 
 }
