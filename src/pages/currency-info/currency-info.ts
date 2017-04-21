@@ -61,12 +61,19 @@ export class CurrencyInfoPage {
     this.polo.returnTicker().subscribe(data => {
       let obj = data[pairSymbol];
 
+      if (this.isUSDT){
         for (let key in obj){
           let value = parseFloat(obj[key]);
-          this.localInvestment[key] = this.isUSDT ? 1/value : value;
+          this.localInvestment[key] = (key === 'quoteVolume') ? value : 1/value;
         }
+      } else {
+        for (let key in obj){
+          let value = parseFloat(obj[key]);
+          this.localInvestment[key] = value;
+        }
+      }
 
-        loading.dismiss().catch(() => {});
+      loading.dismiss(); //.catch(() => {});
     })
 
   }

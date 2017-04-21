@@ -27,7 +27,7 @@
       <span ion-text color="polo-base" style="font-size:0.5em"><ion-icon name="logo-{{isBTC ? 'usd' : 'bitcoin'}}"></ion-icon> </span>
        <b ion-text color="polo-base">{{ localInvestment.last | number: isBTC ? '1.2-2' : '1.8-8' }}</b>
     </h1>
-    <p ion-text color="light-gray" style="margin-top:-8px">Volume: {{ localInvestment.quoteVolume }}</p>
+    <p ion-text color="light-gray" style="margin-top:-8px">Volume: {{ isBTC ? '100%' : localInvestment.quoteVolume }}</p>
   </div>
 
   <ion-list>
@@ -37,35 +37,35 @@
     </ion-list-header>
 
     <ion-item>
-      <ion-label>24h Low</ion-label>
+      <ion-label><h4>24h Low</h4></ion-label>
       <button ion-button item-right strong style="width:120px" color="dark-yellow">
         {{ localInvestment.low24hr | number: isBTC ? '1.2-2' : '1.8-8'}}
       </button>
     </ion-item>
 
     <ion-item>
-      <ion-label>24h High</ion-label>
+      <ion-label><h4>24h High</h4></ion-label>
       <button ion-button item-right strong style="width:120px" color="dark-yellow">
         {{ localInvestment.high24hr | number: isBTC ? '1.2-2' : '1.8-8' }}
       </button>
     </ion-item>
 
     <ion-item>
-      <ion-label>24h % Change</ion-label>
+      <ion-label><h4>24h % Change</h4></ion-label>
       <button ion-button item-right strong style="width:120px" color="{{ localInvestment.percentChange >= 0 ? 'dark-green' : 'dark-red' }}">
         {{ localInvestment.percentChange | number:'1.2-2' }} %
       </button>
     </ion-item>
     
     <ion-item>
-      <ion-label>Highest Sale Value</ion-label> 
+      <ion-label><h4>Highest Sale Value</h4></ion-label> 
       <button ion-button item-right strong style="width:120px" color="dark-yellow">
         {{ localInvestment.highestBid  | number: isBTC ? '1.2-2' : '1.8-8'}}
       </button>
     </ion-item>
 
     <ion-item>
-      <ion-label>Lowest Buying Value</ion-label>
+      <ion-label><h4>Lowest Buying Value</h4></ion-label>
       <button ion-button item-right strong style="width:120px" color="dark-yellow">
         {{ localInvestment.lowestAsk | number: isBTC ? '1.2-2' : '1.8-8' }}
       </button>

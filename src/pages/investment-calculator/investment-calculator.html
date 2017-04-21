@@ -17,16 +17,16 @@
         </ion-list-header>
 
         <ion-item>
-          <ion-label color="dark-yellow">Investment Amount</ion-label>
+          <ion-label color="dark-yellow"><h4><b>Investment Amount</b></h4></ion-label>
           <ion-input type="number" text-right  [(ngModel)]="investmentAmount"></ion-input>
         </ion-item>
 
         <ion-item>
-          <ion-label color="dark-yellow">Cost Per Currency</ion-label>
+          <ion-label color="dark-yellow"><h4><b>Cost Per Currency</b></h4></ion-label>
           <ion-input type="number" text-right  [(ngModel)]="costPerCurrency">></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label color="dark-yellow">Price To Sell Investment</ion-label>
+          <ion-label color="dark-yellow"><h4><b>Price To Sell Investment</b></h4></ion-label>
           <ion-input type="number" text-right  [(ngModel)]="priceToSellInvestment"></ion-input>
         </ion-item>
         
@@ -37,31 +37,31 @@
           <p ion-text color="polo-base">Results</p>    
         </ion-list-header>
         <ion-item>
-          <ion-label>Amount</ion-label>
+          <ion-label><h4>Amount</h4></ion-label>
           <button ion-button item-right strong style="width:120px" color="dark-yellow">
             {{amountCurrency() | number:'1.0-0'}}
           </button>
         </ion-item>
         <ion-item>
-          <ion-label>Cost</ion-label>
+          <ion-label><h4>Cost</h4></ion-label>
           <button ion-button item-right strong style="width:120px" color="dark-yellow">
             {{costOfBuying() | currency:'USD':true:'1.2-2'}}
           </button>
         </ion-item>
         <ion-item>
-          <ion-label>Total Sale</ion-label>
+          <ion-label><h4>Total Sale</h4></ion-label>
           <button ion-button item-right strong style="width:120px" color="dark-yellow">
             {{totalSaleInvestment() | currency:'USD':true:'1.2-2'}}
           </button>
         </ion-item>
         <ion-item>
-          <ion-label>Profit</ion-label>
+          <ion-label><h4>Profit</h4></ion-label>
           <button ion-button item-right strong style="width:120px" color="dark-yellow">
             {{profitInvestment() | currency:'USD':true:'1.2-2'}}
           </button>     
         </ion-item>
         <ion-item>
-          <ion-label>ROI Investment</ion-label>
+          <ion-label><h4>ROI Investment</h4></ion-label>
           <button ion-button item-right strong style="width:120px" color="dark-yellow">
             {{roiInvestment() | number:'1.2-2'}}%
           </button>
