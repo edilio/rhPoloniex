@@ -2,20 +2,15 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-/*
-  Generated class for the Polo provider.
 
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular 2 DI.
-*/
 let POLO_PUBLIC_API = 'https://poloniex.com/public';
 let POLO_PUBLIC_COMMAND = POLO_PUBLIC_API + '?command=';
 
 
 @Injectable()
 export class Polo {
-  public APIKey: string='';
-  public Secret: string='';
+  public APIKey: string = '';
+  public Secret: string = '';
 
   constructor(public http: Http) {
     console.log('Hello Polo Provider');
@@ -41,6 +36,7 @@ export class Polo {
         "return24Volume": POLO_PUBLIC_COMMAND + command,
         "returnOrderBook": POLO_PUBLIC_COMMAND + command + '&currencyPair=' + req['currencyPair'],
         "returnMarketTradeHistory": POLO_PUBLIC_COMMAND + "returnTradeHistory" + '&currencyPair=' + req['currencyPair'],
+        "returnCurrencies": POLO_PUBLIC_COMMAND + command
       },
       url = queries[command];
       if (url) {
@@ -160,4 +156,7 @@ export class Polo {
     return this.apiQuery('withdraw', {"currency": currency, "amount": amount, "address": address});
   }
    
+  public returnCurrencies() {
+    return this.apiQuery('returnCurrencies');
+  }
 }

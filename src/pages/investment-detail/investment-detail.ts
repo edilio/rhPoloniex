@@ -1,7 +1,7 @@
-import { PoloData } from './../../providers/polo-data';
+
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { Investment } from '../../providers/polo-data';
+import { Investment, PoloData } from '../../providers/polo-data';
 
 
 @Component({
@@ -16,7 +16,6 @@ export class InvestmentDetailPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad InvestmentDetailPage');
     this.investment.isNew = this.investment.currency == 'NEW';
   }
 
@@ -28,6 +27,10 @@ export class InvestmentDetailPage {
 
   onCurrencyEnter(info){
     this.investment.currency = info.toUpperCase();
+  }
+
+  onCancel(){
+    this.navCtrl.pop();
   }
 
 }

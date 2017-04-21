@@ -1,0 +1,76 @@
+<ion-header>
+
+  <ion-navbar hideBackButton="true">
+
+    <ion-buttons start>
+      <button ion-button icon-only (click)="cancelView()" margin-left>
+        <ion-icon name="backspace-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title>{{ cc.name }}</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="cc.selected || addCurrency()" margin-right>
+        <ion-icon name="{{ cc.selected ? 'checkmark-circle' : 'add-circle-outline' }}"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content *ngIf="localInvestment">
+  <div text-center>
+    <h1>
+      <span ion-text color="polo-base" style="font-size:0.5em"><ion-icon name="logo-{{isBTC ? 'usd' : 'bitcoin'}}"></ion-icon> </span>
+       <b ion-text color="polo-base">{{ localInvestment.last | number: isBTC ? '1.2-2' : '1.8-8' }}</b>
+    </h1>
+    <p ion-text color="light-gray" style="margin-top:-8px">Volume: {{ isBTC ? '100%' : localInvestment.quoteVolume }}</p>
+  </div>
+
+  <ion-list>
+
+    <ion-list-header>
+      <p ion-text color="polo-base">Stats</p>    
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label><h4>24h Low</h4></ion-label>
+      <button ion-button item-right strong style="width:120px" color="dark-yellow">
+        {{ localInvestment.low24hr | number: isBTC ? '1.2-2' : '1.8-8'}}
+      </button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label><h4>24h High</h4></ion-label>
+      <button ion-button item-right strong style="width:120px" color="dark-yellow">
+        {{ localInvestment.high24hr | number: isBTC ? '1.2-2' : '1.8-8' }}
+      </button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label><h4>24h % Change</h4></ion-label>
+      <button ion-button item-right strong style="width:120px" color="{{ localInvestment.percentChange >= 0 ? 'dark-green' : 'dark-red' }}">
+        {{ localInvestment.percentChange | number:'1.2-2' }} %
+      </button>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label><h4>Highest Sale Value</h4></ion-label> 
+      <button ion-button item-right strong style="width:120px" color="dark-yellow">
+        {{ localInvestment.highestBid  | number: isBTC ? '1.2-2' : '1.8-8'}}
+      </button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label><h4>Lowest Buying Value</h4></ion-label>
+      <button ion-button item-right strong style="width:120px" color="dark-yellow">
+        {{ localInvestment.lowestAsk | number: isBTC ? '1.2-2' : '1.8-8' }}
+      </button>
+    </ion-item>
+
+  </ion-list>  
+
+</ion-content>

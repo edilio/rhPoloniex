@@ -35,8 +35,8 @@ export class Investment {
     public currency: string, 
     public balance: any = 0, 
     public openOrders: any= 0,
-    public avgCost: number, 
-    public actualPrice: number, 
+    public avgCost: number = 0, 
+    public actualPrice: number = 0, 
     public pctOfInvestment: number = 0,
     public isNew: boolean = true) {}
 
@@ -53,7 +53,7 @@ export class Investment {
   }
 
   pctChange () {
-    return (this.actualPrice - this.avgCost)*100 / this.avgCost;
+    return this.avgCost === 0 ? 0 : (this.actualPrice - this.avgCost)*100 / this.avgCost;
   }
 }
 
@@ -70,6 +70,8 @@ export class PoloData {
   keywordsPerTab: any;
   msgs: any;
   selectedFilter: string;
+
+  currencies: Array<any> = [];
   
   constructor(public http: Http, public polo: Polo, public storage: Storage){ 
 
@@ -78,6 +80,7 @@ export class PoloData {
     });
 
     this.initValues();
+    this.getCurrencies();
   }
 
   initValues(){
@@ -152,7 +155,8 @@ export class PoloData {
   }
 
   setPortfolio(data){
-   let arr = [];
+    let arr = [];
+
     data.forEach(element => {
       let inv = new Investment(
         element.currency, 
@@ -164,6 +168,7 @@ export class PoloData {
         false);
       arr.push(inv);
     });
+
     if (arr.length > 0) this.portfolio = arr;
   }
 
@@ -258,6 +263,7 @@ export class PoloData {
 
   updatePctOfInvestment() {
     let totalBTC = this.totalBalanceInBTC();
+
     this.portfolio.forEach(item => {
       item.pctOfInvestment = item.btcValue() * 100.0/totalBTC;
     });
@@ -265,6 +271,7 @@ export class PoloData {
 
   updateBTCPrice(price: number) {
     this.price1btc = price;
+
     this.portfolio.forEach(function(investment){
       investment.price1btc = price;
     });
@@ -293,9 +300,27 @@ export class PoloData {
     investment._24hrHigh = args[8];
     investment._24hrLow = args[9];
   }
-  
+
+  getCurrencies(){
+    this.polo.returnCurrencies().subscribe(data => {
+
+      for (let key in data ){
+        let dataObj = data[key];
+
+        if (dataObj['delisted'] == 0 && dataObj['frozen'] == 0){
+          let obj = {id: dataObj['id'], symbol: key, name: dataObj['name'], selected: false}
+          this.currencies.push(obj);
+        }
+      }
+
+      //console.log(data);
+
+    })
+  }
+
   updatePorfolioPrices() {
     let tickers = this.polo.returnTicker();
+
     setTimeout(() => {
       tickers.forEach(obj => {
           for (let pair in obj) {
@@ -309,7 +334,7 @@ export class PoloData {
             }
           }
           
-        })
+        });
     }, 1000);
     
   }

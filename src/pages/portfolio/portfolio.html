@@ -3,11 +3,10 @@
     <button ion-button menuToggle left>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Portfolio</ion-title>
-
-    <ion-buttons right>
-      <button ion-button icon-only (click)="addInvestment()" padding-right>
-        <ion-icon name="add-circle-outline"></ion-icon>
+    <ion-title>Dashboard</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only margin-right (click)="searchCurrency()">
+        <ion-icon name="search"></ion-icon>
       </button>
     </ion-buttons>
 
@@ -15,48 +14,51 @@
 </ion-header>
 
 <ion-content>
+  
+  <div text-center>
+    <h1>
+      <span ion-text color="polo-base" style="font-size:0.5em"><ion-icon name='logo-bitcoin'></ion-icon> </span>
+       <b ion-text color="polo-base">{{ data.totalBalanceInBTC() | number:'1.2-2'}}</b>
+    </h1>
+    <h4 ion-text color="dark-yellow" style="margin-top:-20px">
+      <span style="font-size:0.5em"><ion-icon name='logo-usd'></ion-icon> </span>
+       {{ data.totalBalanceInUSD() || 0 | number:'1.2-2' }}
+    </h4>
+    <p ion-text color="light-gray" style="margin-top:-8px">1 BTC = ${{ data.price1btc || 0 | number:'1.2-2' }}</p>
+  </div>
+  <br>
 
-  <ion-list inset>
+  
+  <ion-list>
+
     <ion-list-header>
-      <p ion-text color="polo-base">Totals</p> 
-      <span item-right color="polo-base"><b>(<ion-icon name='logo-bitcoin'></ion-icon>1 = <ion-icon name='logo-usd'></ion-icon>{{ data.price1btc | number:'1.2-2' }})</b></span> 
+      <p ion-text color="polo-base">Portfolio</p> 
+      <button ion-button icon-only item-right color="white-bg" (click)="reorderList = !reorderList" margin-right>
+        <ion-icon ion-text color="polo-base" name="reorder"></ion-icon>
+      </button>
     </ion-list-header>
-    <ion-item>
-      <ion-icon name='logo-bitcoin' item-left></ion-icon>
-      {{ data.totalBalanceInBTC() | number:'1.2-2'}}
-      <ion-note item-right><p>value in bitcoins</p></ion-note>
-    </ion-item> 
-    <ion-item>
-      <ion-icon name='logo-usd' item-left></ion-icon>
-      {{ data.totalBalanceInUSD() | number:'1.2-2' }}
-      <ion-note item-right><p>value in usd</p></ion-note>
-    </ion-item> 
-  </ion-list>
 
-  <ion-list inset>
-    <ion-list-header>
-      <p ion-text color="polo-base">
-        Crypto Currencies
-      </p>    
-    </ion-list-header>
-    <ion-item-sliding *ngFor="let investment of data.portfolio" #slidingItem>
-      
-      <ion-item (click)="itemTapped($event, investment)">
-        <b item-left>{{ investment.currency }}</b>
-        <b item-right padding-right color="{{ investment.pctChange() >= 0 ? 'dark-green' : 'dark-red' }}">{{ investment.pctChange() | number:'1.2-2' }}%</b>
-        <!--<button ion-button icon-only item-right color="white-bg" (click)="itemTapped($event, investment)">
-          <ion-icon ion-text color="polo-base" name="information-circle"></ion-icon>
-        </button>-->
-      </ion-item>
-
-      <ion-item-options side-right>
+    <ion-item-group reorder="{{ reorderList }}" (ionItemReorder)="reorderItems($event)">
+      <ion-item-sliding *ngFor="let investment of data.portfolio; let i = index" #slidingItem>
         
-        <button ion-button color="white-bg" icon-only (click)="removeInvestment(slidingItem, investment)">
-          <ion-icon ion-text color="dark-red" name="remove-circle"></ion-icon>
-        </button>
+        <ion-item (click)="itemTapped($event, investment)">
+          <h3><b>{{ investment.currency }}</b></h3>
+          <small ion-text text-nowrap color="polo-base">{{ investment.balance || 0 | number:'1.2-2' }} coins</small>
           
-      </ion-item-options>
-    </ion-item-sliding>
+          <button ion-button strong item-right style="width:80px" color="{{ investment.pctChange() >= 0 ? 'dark-green' : 'dark-red' }}">
+            {{ investment.pctChange() || 0 | number:'1.2-2' }}%
+          </button>
+        </ion-item>
+
+        <ion-item-options side-right>
+          <button ion-button color="white-bg" icon-only (click)="removeInvestment(slidingItem, investment)">
+            <ion-icon ion-text color="dark-red" name="remove-circle"></ion-icon>
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-item-group>
+
   </ion-list>
+
     
 </ion-content>

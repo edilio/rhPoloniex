@@ -1,6 +1,6 @@
-//import { CurrencySelectPage } from './../currency-select/currency-select';
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController} from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { PoloData } from '../../providers/polo-data';
 
@@ -17,8 +17,14 @@ export class TrollboxPage {
       public navCtrl: NavController, 
       public navParams: NavParams, 
       public alertCtrl: AlertController,
-      public data: PoloData) {
+      public data: PoloData,
+      private iab: InAppBrowser) {
     this.selectedFilter = "all";
+  }
+
+  showUrl(){
+    let url: string = 'http://xmr.mockingjaysoft.com/blog/how-to-earn-41376-dollars-with-cryptocurrencies-in-less-than-one-year.html';
+    this.iab.create(url, '_system');
   }
 
   showRadio() {

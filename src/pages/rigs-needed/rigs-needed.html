@@ -18,7 +18,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
   <div [ngSwitch]="rigType">
     
     <div *ngSwitchCase="'needed'">
@@ -28,12 +28,12 @@
         </ion-list-header>
 
         <ion-item>
-          <ion-label color="dark-yellow">Dollars per Month</ion-label>
+          <ion-label color="dark-yellow"><h4><b>Dollars per Month</b></h4></ion-label>
           <ion-input type="number" text-right  [(ngModel)]="goalInDollars"></ion-input>
         </ion-item>
 
         <ion-item>
-          <ion-label color="dark-yellow">Rigs Profit Daily</ion-label>
+          <ion-label color="dark-yellow"><h4><b>Rigs Profit Daily</b></h4></ion-label>
           <ion-input type="number" text-right [(ngModel)]="profitPerRig"></ion-input>
         </ion-item>
 
@@ -43,10 +43,10 @@
 
 
         <ion-item> 
-          <ion-label># Rigs(Miners)</ion-label>     
-          <ion-badge item-right color="dark-yellow">
+          <ion-label><h4># Rigs(Miners)</h4></ion-label>     
+          <button ion-button item-right strong style="width:120px" color="dark-yellow">
             {{noRigs() | number: '1.2-2'}}
-          </ion-badge>
+          </button>
         </ion-item>
 
       </ion-list>
@@ -60,12 +60,12 @@
         </ion-list-header>
 
         <ion-item>
-          <ion-label color="dark-yellow">Breaker Capacity(amps)</ion-label>
+          <ion-label color="dark-yellow"><h4>Breaker Capacity(amps)</h4></ion-label>
           <ion-input type="number" text-right  [(ngModel)]="breakerAmps"></ion-input>
         </ion-item>
 
         <ion-item>
-          <ion-label color="dark-yellow">Power in Watts/Rig</ion-label>
+          <ion-label color="dark-yellow"><h4>Power in Watts/Rig</h4></ion-label>
           <ion-input type="number" text-right [(ngModel)]="wattsPerRig"></ion-input>
         </ion-item>
 
@@ -75,17 +75,17 @@
 
 
         <ion-item> 
-          <ion-label># Rigs(Miners) if 110 V</ion-label>     
-          <ion-badge item-right color="dark-yellow">
+          <ion-label><h4># Rigs(Miners) if 110 V</h4></ion-label>     
+          <button ion-button item-right strong style="width:120px" color="dark-yellow">
             {{rigs110() | number: '1.1-1'}}
-          </ion-badge>
+          </button>
         </ion-item>
 
         <ion-item> 
-          <ion-label># Rigs(Miners) if 220 V</ion-label>     
-          <ion-badge item-right color="dark-yellow">
+          <ion-label><h4># Rigs(Miners) if 220 V</h4></ion-label>     
+          <button ion-button item-right strong style="width:120px" color="dark-yellow">
             {{rigs220() | number: '1.1-1'}}
-          </ion-badge>
+          </button>
         </ion-item>
       </ion-list>
     </div>

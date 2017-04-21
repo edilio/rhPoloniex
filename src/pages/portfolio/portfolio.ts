@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 
-import { NavController, ItemSliding, AlertController } from 'ionic-angular';
+import { NavController, ItemSliding, AlertController, reorderArray } from 'ionic-angular';
 
 import { InvestmentDetailPage } from '../investment-detail/investment-detail';
+import { SearchCurrencyPage } from '../search-currency/search-currency';
 import { Investment, PoloData } from '../../providers/polo-data';
 
 
@@ -12,6 +13,7 @@ import { Investment, PoloData } from '../../providers/polo-data';
 })
 export class Portfolio {
   watchList: Investment[];
+  reorderList: boolean = false;
   
   constructor(
     public navCtrl: NavController, 
@@ -20,15 +22,11 @@ export class Portfolio {
 
 
   itemTapped = function(event, item) {
-    //slidingItem.close();
-    this.navCtrl.push(InvestmentDetailPage, {
-        item: item
-    });
+    this.navCtrl.push(InvestmentDetailPage, {item: item});
   }
 
-  removeInvestment0(investment) {
-    
-    this.data.portfolio = this.data.portfolio.filter(item => item.currency !== investment.currency);
+  reorderItems(indexes){
+    this.data.portfolio = reorderArray(this.data.portfolio, indexes);
     this.data.saveToStorage('my-potfolio', this.data.portfolio);
   }
 
@@ -46,13 +44,13 @@ export class Portfolio {
       message: 'This action will remove selected item from the list',
       buttons: [
         {
-          text: 'Disagree',
+          text: 'Cancel',
           handler: () => {
             slidingItem.close();
           }
         },
         {
-          text: 'Agree',
+          text: 'Delete',
           handler: () => {
             slidingItem.close();
             this.data.portfolio = this.data.portfolio.filter(item => item.currency !== investment.currency);
@@ -62,6 +60,10 @@ export class Portfolio {
       ]
     });
     confirm.present();
+  }
+
+  searchCurrency() {
+    this.navCtrl.push(SearchCurrencyPage);
   }
 
 }
