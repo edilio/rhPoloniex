@@ -199,6 +199,10 @@ export class PoloData {
               if (pair == 'USDT_BTC') {
                   me.updateBTCPrice(currentPrice);
                   me.updatePctOfInvestment();
+                  let investment = me.getCurrencyData('USDT');
+                  if (investment) {
+                    me.updateInvestment(investment, args);
+                  }
               } else if (x == 'BTC') {
                   let investment = me.getCurrencyData(currency);
                   if (investment) {
@@ -306,16 +310,16 @@ export class PoloData {
   updateInvestment(investment: Investment, args) {
     //currencyPair, last, lowestAsk, highestBid, percentChange, baseVolume, quoteVolume, isFrozen, 24hrHigh, 24hrLow
    
-    investment.actualPrice = args[1];
-    investment.lowestAsk = args[2];
-    investment.highestBid = args[3];
-    investment.percentChange = args[4]*100;
+    
+    investment.actualPrice = args[0] === 'USDT_BTC'? 1/args[1]: args[1];
+    investment.lowestAsk = args[2] === 'USDT_BTC'? 1/args[2]: args[2];
+    investment.highestBid = args[2] === 'USDT_BTC'? 1/args[2]: args[2];
+    investment.percentChange = args[0] === 'USDT_BTC'? -args[4]*100: args[4]*100;
     investment.baseVolume = args[5]; 
     investment.quoteVolume  = args[6];
     investment.isFrozen = args[7]; 
     investment._24hrHigh = args[8];
     investment._24hrLow = args[9];
-
     this.updateCurrencyInfo(args);
   }
 
