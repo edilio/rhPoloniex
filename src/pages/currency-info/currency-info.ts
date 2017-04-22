@@ -1,7 +1,7 @@
 import { Polo } from './../../providers/polo';
 
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 import { PoloData, Investment } from '../../providers/polo-data';
 
@@ -22,8 +22,7 @@ export class CurrencyInfoPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     public data: PoloData,
-    public polo: Polo,
-    public loadingCtrl: LoadingController) {
+    public polo: Polo) {
       this.cc = navParams.data.item;
   }
 
@@ -49,33 +48,21 @@ export class CurrencyInfoPage {
     this.localInvestment = new Investment(currencySymbol, 0, 0, 0, 0);
     this.isBTC = currencySymbol === 'BTC';
     this.isUSDT = currencySymbol === 'USDT';
-    
-    let loading = this.loadingCtrl.create({
-        content: `loading ${this.cc.symbol} info ...`,
-        dismissOnPageChange: true
-      });
-
-    loading.present();
 
     let pairSymbol = this.isBTC || this.isUSDT ? `USDT_BTC` : `BTC_${currencySymbol}`;
+    let obj = currenciesData[pairSymbol];
 
-    // this.polo.returnTicker().subscribe(data => {
-      let obj = currenciesData[pairSymbol];
-
-      if (this.isUSDT){
-        for (let key in obj){
-          let value = parseFloat(obj[key]);
-          this.localInvestment[key] = (key === 'quoteVolume') ? value : 1/value;
-        }
-      } else {
-        for (let key in obj){
-          let value = parseFloat(obj[key]);
-          this.localInvestment[key] = value;
-        }
+    if (this.isUSDT){
+      for (let key in obj){
+        let value = parseFloat(obj[key]);
+        this.localInvestment[key] = (key === 'quoteVolume') ? value : 1/value;
       }
-
-      loading.dismiss(); //.catch(() => {});
-    // });
+    } else {
+      for (let key in obj){
+        let value = parseFloat(obj[key]);
+        this.localInvestment[key] = value;
+      }
+    }
 
   }
 
