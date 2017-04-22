@@ -53,7 +53,7 @@
     <ion-item>
       <ion-label><h4>24h % Change</h4></ion-label>
       <button ion-button item-right strong style="width:120px" color="{{ localInvestment.percentChange >= 0 ? 'dark-green' : 'dark-red' }}">
-        {{ localInvestment.percentChange | number:'1.2-2' }} %
+        {{ localInvestment.percentChange * 100 | number:'1.2-2' }} %
       </button>
     </ion-item>
     

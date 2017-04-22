@@ -57,6 +57,7 @@ export class Investment {
   }
 }
 
+
 @Injectable()
 export class PoloData {
 
@@ -72,6 +73,7 @@ export class PoloData {
   selectedFilter: string;
 
   currencies: Array<any> = [];
+  currenciesInfo: any;
   
   constructor(public http: Http, public polo: Polo, public storage: Storage){ 
 
@@ -217,7 +219,7 @@ export class PoloData {
                           msg = msg.replace('terrybeth', '')
                       }
                       if (msg.indexOf(item) > -1) {
-                          console.log(msg);
+                          //console.log(msg);
                           if (msgs.indexOf(msg) == -1) {
                               let x: Message = {
                                 'time': new Date(args[1]*1000),
@@ -286,11 +288,25 @@ export class PoloData {
      }
   }
 
+  updateCurrencyInfo(args){
+    //currencyPair, last, lowestAsk, highestBid, percentChange, baseVolume, quoteVolume, isFrozen, 24hrHigh, 24hrLow
+    let currencyPair = args[0];
+
+    this.currenciesInfo[currencyPair]['last'] = args[1];
+    this.currenciesInfo[currencyPair]['lowestAsk'] = args[2];
+    this.currenciesInfo[currencyPair]['highestBid'] = args[3];
+    this.currenciesInfo[currencyPair]['percentChange'] = args[4];
+    this.currenciesInfo[currencyPair]['baseVolume'] = args[5];
+    this.currenciesInfo[currencyPair]['quoteVolume'] = args[6];
+    this.currenciesInfo[currencyPair]['isFrozen'] = args[7];
+    this.currenciesInfo[currencyPair]['high24hr'] = args[8];
+    this.currenciesInfo[currencyPair]['low24hr'] = args[9];
+  }
+
   updateInvestment(investment: Investment, args) {
     //currencyPair, last, lowestAsk, highestBid, percentChange, baseVolume, quoteVolume, isFrozen, 24hrHigh, 24hrLow
-    let currentPrice = args[1]; 
-         
-    investment.actualPrice = currentPrice;
+   
+    investment.actualPrice = args[1];
     investment.lowestAsk = args[2];
     investment.highestBid = args[3];
     investment.percentChange = args[4]*100;
@@ -299,6 +315,8 @@ export class PoloData {
     investment.isFrozen = args[7]; 
     investment._24hrHigh = args[8];
     investment._24hrLow = args[9];
+
+    this.updateCurrencyInfo(args);
   }
 
   getCurrencies(){
@@ -319,23 +337,47 @@ export class PoloData {
   }
 
   updatePorfolioPrices() {
-    let tickers = this.polo.returnTicker();
+    // let tickers = this.polo.returnTicker();
 
-    setTimeout(() => {
-      tickers.forEach(obj => {
-          for (let pair in obj) {
-            let ticker = obj[pair];
-            if (pair.startsWith('BTC_')) {
-              let currency = pair.substring(4),
-                  inv = this.getCurrencyData(currency);
-              if (inv && inv.actualPrice == 0) {
-                inv.actualPrice = ticker['last'];
-              }
+    // setTimeout(() => {
+    //   tickers.forEach(obj => {
+    //       for (let pair in obj) {
+    //         let ticker = obj[pair];
+    //         if (pair.startsWith('BTC_')) {
+    //           let currency = pair.substring(4),
+    //               inv = this.getCurrencyData(currency);
+    //           if (inv && inv.actualPrice == 0) {
+    //             inv.actualPrice = ticker['last'];
+    //           }
+    //         }
+    //       }
+          
+    //     });
+    // }, 1000);
+
+    this.polo.returnTicker().subscribe(data => {
+     
+      Object.keys(data).forEach(key => {
+        let obj = data[key];
+
+        for (let pair in obj) {
+          let ticker = obj[pair];
+          
+          if (pair.startsWith('BTC_')) {
+            let currency = pair.substring(4),
+                inv = this.getCurrencyData(currency);
+            
+            if (inv && inv.actualPrice == 0) {
+              inv.actualPrice = ticker['last'];
             }
           }
-          
-        });
-    }, 1000);
+        }
+        
+      });
+
+      this.currenciesInfo = data;
+        
+    });
     
   }
 

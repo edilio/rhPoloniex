@@ -43,7 +43,8 @@ export class CurrencyInfoPage {
   }
 
   updateCurrencyInfo(){
-    let currencySymbol = this.cc.symbol;
+    let currencySymbol = this.cc.symbol,
+      currenciesData = this.data.currenciesInfo;
 
     this.localInvestment = new Investment(currencySymbol, 0, 0, 0, 0);
     this.isBTC = currencySymbol === 'BTC';
@@ -58,8 +59,8 @@ export class CurrencyInfoPage {
 
     let pairSymbol = this.isBTC || this.isUSDT ? `USDT_BTC` : `BTC_${currencySymbol}`;
 
-    this.polo.returnTicker().subscribe(data => {
-      let obj = data[pairSymbol];
+    // this.polo.returnTicker().subscribe(data => {
+      let obj = currenciesData[pairSymbol];
 
       if (this.isUSDT){
         for (let key in obj){
@@ -74,7 +75,7 @@ export class CurrencyInfoPage {
       }
 
       loading.dismiss(); //.catch(() => {});
-    })
+    // });
 
   }
 
