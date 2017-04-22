@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Portfolio } from '../pages/portfolio/portfolio';
 import { Calculators } from '../pages/calculators/calculators';
 import { TrollboxPage } from '../pages/trollbox/trollbox'; 
+import { CostToMineCoinPage } from '../pages/cost-to-mine-coin/cost-to-mine-coin';
 
 @Component({
   templateUrl: 'app.html'
@@ -13,7 +14,7 @@ import { TrollboxPage } from '../pages/trollbox/trollbox';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = Portfolio;
+  rootPage: any = CostToMineCoinPage;
 
   pages: Array<{title: string, component: any, icon: string}>;
 

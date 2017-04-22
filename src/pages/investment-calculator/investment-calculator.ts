@@ -18,8 +18,8 @@ export class InvestmentCalculatorPage {
   
 // Investment calculator parameters
   investmentAmount: number = 1000;
-  costPerCurrency: number = 0.00003102;
-  priceToSellInvestment: number = 0.046;
+  costPerCurrency: number = 0.03102;
+  priceToSellInvestment: number = 0.50;
 
   amountCurrency = function () {
     return Math.floor(this.investmentAmount/this.costPerCurrency);
