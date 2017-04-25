@@ -309,8 +309,7 @@ export class PoloData {
 
   updateInvestment(investment: Investment, args) {
     //currencyPair, last, lowestAsk, highestBid, percentChange, baseVolume, quoteVolume, isFrozen, 24hrHigh, 24hrLow
-   
-    
+      
     investment.actualPrice = args[0] === 'USDT_BTC'? 1/args[1]: args[1];
     investment.lowestAsk = args[2] === 'USDT_BTC'? 1/args[2]: args[2];
     investment.highestBid = args[2] === 'USDT_BTC'? 1/args[2]: args[2];
@@ -320,6 +319,7 @@ export class PoloData {
     investment.isFrozen = args[7]; 
     investment._24hrHigh = args[8];
     investment._24hrLow = args[9];
+    
     this.updateCurrencyInfo(args);
   }
 
@@ -335,29 +335,10 @@ export class PoloData {
         }
       }
 
-      //console.log(data);
-
     })
   }
 
   updatePorfolioPrices() {
-    // let tickers = this.polo.returnTicker();
-
-    // setTimeout(() => {
-    //   tickers.forEach(obj => {
-    //       for (let pair in obj) {
-    //         let ticker = obj[pair];
-    //         if (pair.startsWith('BTC_')) {
-    //           let currency = pair.substring(4),
-    //               inv = this.getCurrencyData(currency);
-    //           if (inv && inv.actualPrice == 0) {
-    //             inv.actualPrice = ticker['last'];
-    //           }
-    //         }
-    //       }
-          
-    //     });
-    // }, 1000);
 
     this.polo.returnTicker().subscribe(data => {
      
@@ -367,7 +348,7 @@ export class PoloData {
         for (let pair in obj) {
           let ticker = obj[pair];
           
-          if (pair.startsWith('BTC_')) {
+          if (pair.startsWith('BTC_') || pair === 'USDT_BTC') {
             let currency = pair.substring(4),
                 inv = this.getCurrencyData(currency);
             

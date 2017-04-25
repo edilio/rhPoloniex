@@ -5,11 +5,13 @@ import { NavController, ItemSliding, AlertController, reorderArray } from 'ionic
 import { InvestmentDetailPage } from '../investment-detail/investment-detail';
 import { SearchCurrencyPage } from '../search-currency/search-currency';
 import { Investment, PoloData } from '../../providers/polo-data';
+//import { AdMobPro } from '../../providers/ad-mob-pro';
 
 
 @Component({
   selector: 'page-portfolio',
   templateUrl: 'portfolio.html'
+  //providers: [AdMobPro]
 })
 export class Portfolio {
   watchList: Investment[];
@@ -20,8 +22,7 @@ export class Portfolio {
     public data: PoloData,
     public alertCtrl: AlertController) {}
 
-
-  itemTapped = function(event, item) {
+  itemTapped(event, item) {
     this.navCtrl.push(InvestmentDetailPage, {item: item});
   }
 
@@ -64,6 +65,10 @@ export class Portfolio {
 
   searchCurrency() {
     this.navCtrl.push(SearchCurrencyPage);
+  }
+
+  showAd(){
+    //this.admob.onClick();
   }
 
 }
