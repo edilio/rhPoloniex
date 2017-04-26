@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 
-import { AdMob, AdMobOptions, AdSize, AdExtras } from '@ionic-native/admob';
+import { AdMob, AdMobOptions } from '@ionic-native/admob';
 
 import 'rxjs/add/operator/map';
 

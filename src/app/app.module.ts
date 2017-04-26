@@ -20,7 +20,8 @@ import { MiningCalculatorPage } from '../pages/mining-calculator/mining-calculat
 import { SearchCurrencyPage } from '../pages/search-currency/search-currency';
 import { CurrencyInfoPage } from '../pages/currency-info/currency-info';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
-import { AdMobPro } from '../providers/ad-mob-pro';
+// import { AdMobPro } from '../providers/ad-mob-pro';
+import { AdMob } from '@ionic-native/admob';
 
 
 @NgModule({
@@ -63,7 +64,7 @@ import { AdMobPro } from '../providers/ad-mob-pro';
     StatusBar,
     SplashScreen,
     InAppBrowser,
-    AdMobPro,
+    AdMob,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
